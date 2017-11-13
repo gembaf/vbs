@@ -55,3 +55,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails'
 
+gem 'capistrano', '~> 3.10.0'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+
