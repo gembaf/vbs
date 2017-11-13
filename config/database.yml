@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
+  username: <%= ENV['VBS_DATABASE_USERNAME'] %>
+  password: <%= ENV['VBS_DATABASE_PASSWORD'] %>
   host: localhost
 
 development:
@@ -50,5 +50,3 @@ test:
 production:
   <<: *default
   database: vbs_production
-  username: vbs
-  password: <%= ENV['VBS_DATABASE_PASSWORD'] %>
