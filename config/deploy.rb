@@ -45,6 +45,7 @@ namespace :deploy do
     puts 'unicorn restart!!!!!!!!!!!!!!'
   end
 
+  before :starting, 'dotenv:upload'
   before :migrate, 'database:create'
 end
 
