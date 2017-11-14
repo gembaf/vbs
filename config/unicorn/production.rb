@@ -1,10 +1,15 @@
 worker_processes 3
 
-listen File.expand_path('/srv/www/vbs/shared/tmp/unicorn.sock')
-pid File.expand_path('/srv/www/vbs/shared/tmp/pids/unicorn.pid')
+shared_path = '/srv/www/vbs/shared'
+current_path = ENV['RAILS_ROOT']
 
-stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+listen File.expand_path('tmp/sockets/unicorn.sock', shared_path)
+pid File.expand_path('tmp/pids/unicorn.pid', shared_path)
+
+stderr_path File.expand_path('log/unicorn.log', current_path)
+stdout_path File.expand_path('log/unicorn.log', current_path)
+
+working_directory current_path
 
 preload_app true
 
