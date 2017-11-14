@@ -1,7 +1,7 @@
 worker_processes 3
 
-listen File.expand_path('tmp/unicorn.sock')
-pid File.expand_path('tmp/unicorn.pid')
+listen File.expand_path('/srv/www/vbs/shared/tmp/unicorn.sock')
+pid File.expand_path('/srv/www/vbs/shared/tmp/pids/unicorn.pid')
 
 stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
