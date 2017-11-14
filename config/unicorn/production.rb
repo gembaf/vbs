@@ -1,7 +1,7 @@
 worker_processes 3
 
 shared_path = '/srv/www/vbs/shared'
-current_path = ENV['RAILS_ROOT']
+current_path = '/srv/www/vbs/current'
 
 listen File.expand_path('tmp/sockets/unicorn.sock', shared_path)
 pid File.expand_path('tmp/pids/unicorn.pid', shared_path)
