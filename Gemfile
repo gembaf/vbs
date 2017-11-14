@@ -58,4 +58,5 @@ gem 'dotenv-rails'
 gem 'capistrano', '~> 3.10.0'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
+gem 'capistrano-rbenv'
 
