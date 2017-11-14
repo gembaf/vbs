@@ -40,12 +40,8 @@ set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 # set :ssh_options, verify_host_key: :secure
 
 namespace :deploy do
-  desc 'Restart application'
-  task :restart do
-    puts 'unicorn restart!!!!!!!!!!!!!!'
-  end
-
   before :starting, 'dotenv:upload'
   before :migrate, 'database:create'
+  after :publishing, 'unicorn:restart'
 end
 
