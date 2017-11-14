@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 worker_processes 4
 
 listen File.expand_path('tmp/unicorn.sock')
