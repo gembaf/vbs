@@ -44,5 +44,7 @@ namespace :deploy do
   task :restart do
     puts 'unicorn restart!!!!!!!!!!!!!!'
   end
+
+  before :migrate, 'database:create'
 end
 
