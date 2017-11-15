@@ -36,3 +36,6 @@ FrozenStringLiteralComment:
 AlignParameters:
   Enabled: false
 
+EmptyMethod:
+  Enabled: false
+
