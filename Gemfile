@@ -61,4 +61,5 @@ gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
 
 gem 'unicorn'
+gem 'rubocop'
 

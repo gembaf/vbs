@@ -1,0 +1,25 @@
+AllCops:
+  RubyVersion: 2.4.2
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - '.bundle/**/*'
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# ファイル末尾の改行を許可
+TrailingBlankLines:
+  EnforcedStyle: final_blank_line
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 15
+
+LineLength:
+  Max: 100
+
