@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# deploy production
+bundle exec cap production deploy
+

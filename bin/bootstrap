@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# bundle install
+bundle install --path .bundle -j4
+
+# database
+bundle exec rake db:create
+
