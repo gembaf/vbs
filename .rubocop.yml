@@ -33,3 +33,6 @@ BlockLength:
 FrozenStringLiteralComment:
   Enabled: false
 
+AlignParameters:
+  Enabled: false
+
