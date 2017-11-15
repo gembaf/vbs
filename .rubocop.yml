@@ -1,25 +1,35 @@
 AllCops:
-  RubyVersion: 2.4.2
-  Include:
-    - '**/Rakefile'
-    - '**/config.ru'
+  TargetRubyVersion: 2.4.2
   Exclude:
     - '.bundle/**/*'
+    - 'bin/**/*'
+    - 'Rakefile'
+    - 'Gemfile'
+    - 'Capfile'
+    - 'config.ru'
 
-# 日本語でのコメントを許可
 AsciiComments:
   Enabled: false
 
-# ファイル末尾の改行を許可
 TrailingBlankLines:
   EnforcedStyle: final_blank_line
 
-Metrics/AbcSize:
-  Max: 30
+Documentation:
+  Enabled: false
 
-Metrics/MethodLength:
-  Max: 15
+AbcSize:
+  Max: 25
+
+MethodLength:
+  Max: 20
 
 LineLength:
-  Max: 100
+  Enabled: false
+
+BlockLength:
+  Exclude:
+    - '**/*.rake'
+
+FrozenStringLiteralComment:
+  Enabled: false
 

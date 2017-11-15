@@ -9,3 +9,4 @@ if ENV['RAILS_RELATIVE_URL_ROOT']
 else
   run Rails.application
 end
+

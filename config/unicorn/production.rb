@@ -13,28 +13,17 @@ working_directory current_path
 
 preload_app true
 
-before_fork do |server, worker|
-  old_pid = "#{server.config[:pid]}.oldbin"
-
-  if File.exists?(old_pid) && server.pid != old_pid
-    begin
-      sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
-      Process.kill(sig, File.read(old_pid).to_i)
-    rescue Errno::ENOENT, Errno::ESRCH
-      # someone else did our job for us
-    end
-  end
-
-  defined?(ActiveRecord::Base) and
+before_fork do |_server, _worker|
+  defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.connection.disconnect!
 end
 
-after_fork do |server, worker|
+after_fork do |_server, _worker|
   Signal.trap 'TERM' do
     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
   end
 
-  defined?(ActiveRecord::Base) and
+  defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.establish_connection
 end
 

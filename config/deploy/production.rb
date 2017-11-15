@@ -34,8 +34,6 @@ role :db,  "deploy@#{ENV['SERVER_DOMAIN']}"
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-
-
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
@@ -63,14 +61,12 @@ role :db,  "deploy@#{ENV['SERVER_DOMAIN']}"
 #     # password: "please use keys"
 #   }
 
-server ENV['SERVER_DOMAIN'], {
-  user: 'deploy',
-  roles: %w{app db web},
-  ssh_options: {
-    keys: ENV['SSH_PRIVATE_KEY'],
-    forward_agent: true,
-    port: ENV['SSH_PORT'],
-    auth_methods: %w(publickey),
-  }
-}
+server ENV['SERVER_DOMAIN'], user: 'deploy',
+                             roles: %w[app db web],
+                             ssh_options: {
+                               keys: ENV['SSH_PRIVATE_KEY'],
+                               forward_agent: true,
+                               port: ENV['SSH_PORT'],
+                               auth_methods: %w[publickey]
+                             }
 
