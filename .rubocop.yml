@@ -39,3 +39,9 @@ AlignParameters:
 EmptyMethod:
   Enabled: false
 
+TrailingCommaInLiteral:
+  Enabled: false
+
+TrailingCommaInArguments:
+  Enabled: false
+

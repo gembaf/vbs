@@ -24,3 +24,4 @@ module Ragnarok
     end
   end
 end
+
