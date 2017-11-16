@@ -1,6 +1,6 @@
 module Ragnarok
   module Parser
-    class MedallionParser
+    class MedallionParser < BaseParser
       def initialize(doc)
         @text = doc.text
       end
@@ -12,26 +12,14 @@ module Ragnarok
         {
           short_name: short_name(elem[0]),
           name: elem[1],
-          reality: reality(elem[2]),
-          resource: resource(elem[4]),
-          cost: cost(elem[6]),
+          reality: split_colon(elem[2]),
+          resource: split_colon(elem[4]),
+          cost: split_colon(elem[6]),
         }
       end
 
       def short_name(text)
         text[/【(.*?)】/, 1]
-      end
-
-      def reality(text)
-        text.split(/:/).last.to_i
-      end
-
-      def resource(text)
-        text.split(/:/).last.to_i
-      end
-
-      def cost(text)
-        text.split(/:/).last.to_i
       end
     end
   end

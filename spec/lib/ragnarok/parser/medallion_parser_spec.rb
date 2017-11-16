@@ -1,6 +1,6 @@
 describe Ragnarok::Parser::MedallionParser do
-  let(:doc) { Nokogiri::HTML.parse(html, nil, 'utf-8').xpath('//h2').first }
-  let(:html) { File.read(Rails.root.join('spec/fixtures/medallion.html')) }
+  let(:doc) { Ragnarok::Parser::BaseParser.nokogiri(path).xpath('//h2').first }
+  let(:path) { Rails.root.join('spec/fixtures/medallion.html') }
 
   context '#parse' do
     subject { described_class.new(doc).parse }
@@ -27,36 +27,6 @@ describe Ragnarok::Parser::MedallionParser do
 
     it '正常にパースできること' do
       expect(subject).to eq '力'
-    end
-  end
-
-  context '#reality' do
-    subject { described_class.new(doc).reality(text) }
-
-    let(:text) { 'レアリティー:1' }
-
-    it '正常にパースできること' do
-      expect(subject).to eq 1
-    end
-  end
-
-  context '#resource' do
-    subject { described_class.new(doc).resource(text) }
-
-    let(:text) { '必要生成資源:250' }
-
-    it '正常にパースできること' do
-      expect(subject).to eq 250
-    end
-  end
-
-  context '#cost' do
-    subject { described_class.new(doc).cost(text) }
-
-    let(:text) { '称号付与武勲:3' }
-
-    it '正常にパースできること' do
-      expect(subject).to eq 3
     end
   end
 end
