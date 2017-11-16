@@ -38,6 +38,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'rubocop'
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
