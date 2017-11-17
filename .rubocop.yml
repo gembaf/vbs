@@ -29,6 +29,7 @@ LineLength:
 BlockLength:
   Exclude:
     - '**/*.rake'
+    - 'spec/**/*'
 
 FrozenStringLiteralComment:
   Enabled: false
