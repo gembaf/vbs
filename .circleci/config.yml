@@ -10,11 +10,10 @@ jobs:
        - image: circleci/ruby:2.4.1-node-browsers
          environment:
            - RAILS_ENV=test
-       - image: circleci/mysql:5.7
-         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --innodb-large-prefix=true --innodb-file-format=Barracuda
-         environment:
-           - MYSQL_USER: root
+       - image: circleci/mysql:5.5.58
+         env:
            - MYSQL_ALLOW_EMPTY_PASSWORD: true
+           - MYSQL_ROOT_HOST: %
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -41,8 +40,11 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run:
+        name: prepare db
+        command: |
+          bundle exec rake db:create
+          bundle exec rake db:schema:load
 
       # run tests!
       - run:
