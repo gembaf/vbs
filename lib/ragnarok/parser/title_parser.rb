@@ -6,7 +6,7 @@ module Ragnarok
       end
 
       def parse
-        elem = @doc.xpath('//td').map(&:text)
+        elem = @doc.xpath('td').map(&:text)
         skill_name, skill_point = elem[9].split(':')
 
         {
