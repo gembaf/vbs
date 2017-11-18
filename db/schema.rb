@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20171118133519) do
     t.integer "intelligence", null: false
     t.string "specialty", null: false
     t.string "protection", null: false
-    t.integer "skill_id", null: false
+    t.integer "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

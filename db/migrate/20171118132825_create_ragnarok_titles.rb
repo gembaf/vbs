@@ -10,7 +10,7 @@ class CreateRagnarokTitles < ActiveRecord::Migration[5.1]
       t.integer :intelligence, null: false
       t.string :specialty, null: false
       t.string :protection, null: false
-      t.integer :skill_id, null: false
+      t.integer :skill_id
 
       t.timestamps
     end
