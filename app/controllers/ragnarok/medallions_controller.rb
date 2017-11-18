@@ -1,4 +1,7 @@
-class Ragnarok::MedallionsController < ApplicationController
-  def index
+module Ragnarok
+  class MedallionsController < ApplicationController
+    def index
+    end
   end
 end
+

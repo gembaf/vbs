@@ -1,4 +1,7 @@
-class Ragnarok::MainController < ApplicationController
-  def index
+module Ragnarok
+  class MainController < ApplicationController
+    def index
+    end
   end
 end
+
