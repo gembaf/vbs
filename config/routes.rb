@@ -3,5 +3,11 @@ Rails.application.routes.draw do
 
   #-- main
   root to: 'main#index'
+
+  #-- ragnarok
+  namespace :ragnarok do
+    root to: 'main#index'
+    get 'medallions' => 'medallions#index'
+  end
 end
 
