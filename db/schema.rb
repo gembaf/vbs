@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118090648) do
+ActiveRecord::Schema.define(version: 20171118133519) do
 
   create_table "ragnarok_medallions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "short_name", null: false
@@ -18,6 +18,28 @@ ActiveRecord::Schema.define(version: 20171118090648) do
     t.integer "reality", null: false
     t.integer "resource", null: false
     t.integer "cost", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ragnarok_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.integer "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ragnarok_titles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.boolean "prefix", null: false
+    t.boolean "suffix", null: false
+    t.integer "attack", null: false
+    t.integer "defense", null: false
+    t.integer "speed", null: false
+    t.integer "intelligence", null: false
+    t.string "specialty", null: false
+    t.string "protection", null: false
+    t.integer "skill_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
