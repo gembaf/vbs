@@ -7,6 +7,7 @@ module Ragnarok
     end
 
     def call
+      medallions.zip(title_tables)
     end
 
     def medallions
