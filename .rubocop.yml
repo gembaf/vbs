@@ -29,6 +29,7 @@ LineLength:
 BlockLength:
   Exclude:
     - '**/*.rake'
+    - 'spec/**/*'
 
 FrozenStringLiteralComment:
   Enabled: false
@@ -37,5 +38,11 @@ AlignParameters:
   Enabled: false
 
 EmptyMethod:
+  Enabled: false
+
+TrailingCommaInLiteral:
+  Enabled: false
+
+TrailingCommaInArguments:
   Enabled: false
 

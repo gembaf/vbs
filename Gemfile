@@ -22,6 +22,7 @@ gem 'slim-rails'
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.6'
+  gem 'nokogiri'
 end
 
 group :development do
