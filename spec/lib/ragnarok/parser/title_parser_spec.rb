@@ -2,7 +2,7 @@ describe Ragnarok::Parser::TitleParser do
   context '#parse' do
     subject { described_class.new(doc).parse }
 
-    let(:doc) { Ragnarok::Parser::BaseParser.nokogiri(path).xpath('//tr').first }
+    let(:doc) { Ragnarok::Parser.nokogiri(path).xpath('//tr').first }
 
     context '大体埋まっている場合' do
       let(:path) { Rails.root.join('spec/fixtures/title_full.html') }

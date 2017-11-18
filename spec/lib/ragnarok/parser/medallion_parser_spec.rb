@@ -1,5 +1,5 @@
 describe Ragnarok::Parser::MedallionParser do
-  let(:doc) { Ragnarok::Parser::BaseParser.nokogiri(path).xpath('//h2').first }
+  let(:doc) { Ragnarok::Parser.nokogiri(path).xpath('//h2').first }
   let(:path) { Rails.root.join('spec/fixtures/medallion.html') }
 
   context '#parse' do
