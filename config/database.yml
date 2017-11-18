@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['DB_USERNAME'] || ENV['VBS_DATABASE_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] || ENV['VBS_DATABASE_PASSWORD'] %>
-  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  username: <%= ENV['MYSQL_USER'] || ENV['VBS_DATABASE_USERNAME'] %>
+  password: <%= ENV['MYSQL_ROOT_PASSWORD'] || ENV['VBS_DATABASE_PASSWORD'] %>
+  host: <%= ENV['MYSQL_DATABASE'] || 'localhost' %>
 
 development:
   <<: *default
