@@ -23,6 +23,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.6'
   gem 'nokogiri'
+  gem 'database_cleaner'
 end
 
 group :development do
