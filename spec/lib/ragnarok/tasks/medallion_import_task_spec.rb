@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-describe Tasks::Ragnarok::MedallionImportTask do
+describe Ragnarok::Tasks::MedallionImportTask do
   let(:instance) { described_class.new }
   let(:data) { Ragnarok::MedallionParseService.new.call }
 

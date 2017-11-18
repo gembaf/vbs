@@ -1,5 +1,5 @@
-module Tasks
-  module Ragnarok
+module Ragnarok
+  module Tasks
     class MedallionImportTask
       def self.execute
         data = ::Ragnarok::MedallionParseService.new.call
@@ -14,16 +14,16 @@ module Tasks
       end
 
       def import_medallion(params)
-        ::Ragnarok::Medallion.create(params)
+        Ragnarok::Medallion.create(params)
       end
 
       def import_title(params)
         skill_name = params.delete(:skill_name)
         skill_point = params.delete(:skill_point)
 
-        skill = ::Ragnarok::Skill.create(name: skill_name, point: skill_point)
+        skill = Ragnarok::Skill.create(name: skill_name, point: skill_point)
         params[:skill_id] = skill.id
-        ::Ragnarok::Title.create(params)
+        Ragnarok::Title.create(params)
       end
     end
   end
