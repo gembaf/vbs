@@ -41,10 +41,10 @@ jobs:
 
       # Database setup
       - run:
-        name: prepare db
-        command: |
-          bundle exec rake db:create
-          bundle exec rake db:schema:load
+          name: prepare db
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
 
       # run tests!
       - run:
