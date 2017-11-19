@@ -18,6 +18,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 gem 'unicorn'
 gem 'slim-rails'
+gem 'bootstrap-sass'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'pry-byebug'
