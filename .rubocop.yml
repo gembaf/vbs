@@ -7,6 +7,8 @@ AllCops:
     - 'Gemfile'
     - 'Capfile'
     - 'config.ru'
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
 
 AsciiComments:
   Enabled: false
