@@ -3,28 +3,28 @@ h1 ragnarok#medallions
 - @medallions.each do |medallion|
   p= "【#{medallion.short_name}】 #{medallion.name} レアリティ:#{medallion.reality} / 必要生成資源:#{medallion.resource} / 称号付与武勲:#{medallion.cost}"
 
-  table
+  table.table.table-bordered
     tr
-      th 名称
-      th 接頭
-      th 接尾
-      th 攻
-      th 防
-      th 速
-      th 知
-      th 特攻付与
-      th 加護変化
-      th スキル追加
+      th.center 名称
+      th.center 接頭
+      th.center 接尾
+      th.center 攻
+      th.center 防
+      th.center 速
+      th.center 知
+      th.center 特攻
+      th.center 加護
+      th.center スキル
     - medallion.titles.each do |title|
       tr
         td= title.name
-        td= title.prefix
-        td= title.suffix
-        td= title.attack
-        td= title.defense
-        td= title.speed
-        td= title.intelligence
-        td= title.specialty
-        td= title.protection
+        td.center= title.prefix
+        td.center= title.suffix
+        td.right= title.attack
+        td.right= title.defense
+        td.right= title.speed
+        td.right= title.intelligence
+        td.center= title.specialty
+        td.center= title.protection
         td= title.skill ? "#{title.skill.name}:#{title.skill.point}" : ''
 
