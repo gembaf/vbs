@@ -1,6 +1,9 @@
 module Ragnarok
   class Skill < ApplicationRecord
-    belongs_to :title
+    def self.create_with_valid(params)
+      return nil if params[:name].blank?
+      create!(params)
+    end
   end
 end
 
