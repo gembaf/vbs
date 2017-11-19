@@ -21,9 +21,9 @@ module Ragnarok
         skill_name = params.delete(:skill_name)
         skill_point = params.delete(:skill_point)
 
-        skill = Ragnarok::Skill.find_or_create(name: skill_name, point: skill_point)
-        params[:skill_id] = skill.id
-        Ragnarok::Title.create(params)
+        title = Ragnarok::Title.create(params)
+        return if skill_name.blank?
+        Ragnarok::Skill.create(name: skill_name, point: skill_point, title: title)
       end
     end
   end

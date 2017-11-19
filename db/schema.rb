@@ -25,21 +25,21 @@ ActiveRecord::Schema.define(version: 20171118133519) do
   create_table "ragnarok_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.integer "point"
+    t.integer "title_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "ragnarok_titles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
-    t.boolean "prefix", null: false
-    t.boolean "suffix", null: false
-    t.integer "attack", null: false
-    t.integer "defense", null: false
-    t.integer "speed", null: false
-    t.integer "intelligence", null: false
-    t.string "specialty", null: false
-    t.string "protection", null: false
-    t.integer "skill_id"
+    t.boolean "prefix", default: false, null: false
+    t.boolean "suffix", default: false, null: false
+    t.integer "attack", default: 0, null: false
+    t.integer "defense", default: 0, null: false
+    t.integer "speed", default: 0, null: false
+    t.integer "intelligence", default: 0, null: false
+    t.string "specialty", default: "", null: false
+    t.string "protection", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
