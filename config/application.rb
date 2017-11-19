@@ -20,6 +20,7 @@ module Vbs
     config.generators do |g|
       g.template_engine = :slim
 
+      g.factory_bot false
       g.assets false
       g.helper false
       g.test_framework false

@@ -1,6 +1,7 @@
 module Ragnarok
   class Title < ApplicationRecord
     has_one :skill
+    belongs_to :medallion
 
     def self.create_with_skill(params)
       skill_name = params.delete(:skill_name)

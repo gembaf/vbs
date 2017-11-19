@@ -2,12 +2,13 @@ describe Ragnarok::Title do
   context '.create_with_skill' do
     subject { described_class.create_with_skill(params) }
 
+    let(:medallion) { create(:ragnarok_medallion) }
     let(:params) do
       {
         name: '激情の',
         skill_name: '致命必殺',
         skill_point: 10,
-        medallion_id: 1,
+        medallion_id: medallion.id,
       }
     end
 
