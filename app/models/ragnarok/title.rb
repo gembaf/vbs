@@ -6,7 +6,7 @@ module Ragnarok
       skill_name = params.delete(:skill_name)
       skill_point = params.delete(:skill_point)
 
-      create(params).tap do |title|
+      create!(params).tap do |title|
         Skill.create_with_valid(name: skill_name, point: skill_point, title_id: title.id)
       end
     end

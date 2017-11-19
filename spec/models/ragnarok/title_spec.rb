@@ -7,6 +7,7 @@ describe Ragnarok::Title do
         name: '激情の',
         skill_name: '致命必殺',
         skill_point: 10,
+        medallion_id: 1,
       }
     end
 

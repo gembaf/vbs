@@ -3,13 +3,13 @@ module Ragnarok
     class MedallionImportTask
       def self.execute
         data = MedallionParseService.new.call
-        new.import_all(data)
-      end
 
-      def import_all(data)
-        data.each do |medallion, titles|
-          Medallion.create(medallion)
-          titles.each { |title| Title.create_with_skill(title) }
+        data.each do |medallion_params, titles_params|
+          medallion = Medallion.create(medallion_params)
+          titles_params.each do |params|
+            params[:medallion_id] = medallion.id
+            Title.create_with_skill(params)
+          end
         end
       end
     end
