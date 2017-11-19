@@ -23,6 +23,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.6'
   gem 'nokogiri'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -38,6 +40,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'rubocop'
   gem 'pry-rails'
+  gem 'annotate'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
