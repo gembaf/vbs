@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: ragnarok_skills
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  point      :integer
+#  title_id   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 describe Ragnarok::Skill do
   context '.create_with_valid' do
     subject { described_class.create_with_valid(name: name) }
