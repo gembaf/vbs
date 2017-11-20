@@ -18,13 +18,13 @@ h1 ragnarok#medallions
     - medallion.titles.each do |title|
       tr
         td= title.name
-        td.center= title.prefix
-        td.center= title.suffix
+        td.center= title.prefix_text
+        td.center= title.suffix_text
         td.right= title.attack
         td.right= title.defense
         td.right= title.speed
         td.right= title.intelligence
         td.center= title.specialty
         td.center= title.protection
-        td= title.title_skill ? "#{title.title_skill.name}:#{title.title_skill.point}" : ''
+        td= title.skill_text
 
