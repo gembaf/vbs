@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120125003) do
+ActiveRecord::Schema.define(version: 20171120125433) do
 
   create_table "ragnarok_medallions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "short_name", null: false
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20171120125003) do
   create_table "ragnarok_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.integer "point"
-    t.integer "title_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
