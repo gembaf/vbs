@@ -1,2 +1,2 @@
-lib/assets/* linguist-vendored
-spec/fixtures/* linguist-vendored
+lib/assets/**/* linguist-vendored
+spec/fixtures/**/* linguist-vendored
