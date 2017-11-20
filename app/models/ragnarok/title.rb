@@ -29,7 +29,8 @@ module Ragnarok
 
       create!(params).tap do |title|
         next if skill_name.blank?
-        Skill.find_or_create!(name: skill_name, title: title, title_skill_attributes: { point: skill_point })
+        skill = Skill.find_or_create!(name: skill_name)
+        TitleSkill.create!(point: skill_point, title: title, skill: skill)
       end
     end
   end

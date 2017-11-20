@@ -14,6 +14,10 @@ module Ragnarok
   class TitleSkill < ApplicationRecord
     belongs_to :title
     belongs_to :skill
+
+    def name
+      skill.name
+    end
   end
 end
 

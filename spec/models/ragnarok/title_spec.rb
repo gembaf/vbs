@@ -40,8 +40,8 @@ describe Ragnarok::Title do
     end
 
     it 'Ragnarok::Skillモデルが１つできること' do
-      expect(title.skill.name).to eq '致命必殺'
-      expect(title.skill.point).to eq 10
+      expect(title.title_skill.name).to eq '致命必殺'
+      expect(title.title_skill.point).to eq 10
     end
   end
 end
