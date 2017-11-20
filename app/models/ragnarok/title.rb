@@ -19,7 +19,8 @@
 
 module Ragnarok
   class Title < ApplicationRecord
-    has_one :skill
+    has_one :title_skill
+    has_one :skill, through: :title_skill
     belongs_to :medallion
 
     def self.create_with_skill(params)
@@ -27,7 +28,9 @@ module Ragnarok
       skill_point = params.delete(:skill_point)
 
       create!(params).tap do |title|
-        Skill.create_with_valid(name: skill_name, point: skill_point, title_id: title.id)
+        next if skill_name.blank?
+        skill = Skill.find_or_create!(name: skill_name)
+        TitleSkill.create!(point: skill_point, title: title, skill: skill)
       end
     end
   end
