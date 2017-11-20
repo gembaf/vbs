@@ -1,7 +1,5 @@
-h1 ragnarok#medallions
-
 - @medallions.each do |medallion|
-  p= "【#{medallion.short_name}】 #{medallion.name} レアリティ:#{medallion.reality} / 必要生成資源:#{medallion.resource} / 称号付与武勲:#{medallion.cost}"
+  h4.alert.alert-success= medallion.caption
 
   table.table.table-bordered
     tr
