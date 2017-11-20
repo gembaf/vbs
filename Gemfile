@@ -20,6 +20,7 @@ gem 'unicorn'
 gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem 'active_decorator'
 
 group :development, :test do
   gem 'pry-byebug'
