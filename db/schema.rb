@@ -24,14 +24,13 @@ ActiveRecord::Schema.define(version: 20171120125433) do
 
   create_table "ragnarok_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
-    t.integer "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "ragnarok_title_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "title_id"
-    t.integer "skill_id"
+    t.integer "title_id", null: false
+    t.integer "skill_id", null: false
     t.integer "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
