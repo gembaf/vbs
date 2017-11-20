@@ -9,25 +9,24 @@
 #
 
 describe Ragnarok::Skill do
-  context '.create_with_valid' do
-    subject { described_class.create_with_valid(name: name) }
+  context '.find_or_create!' do
+    subject { described_class.find_or_create!(name: name) }
+    let(:name) { '致命必殺' }
 
     before { subject }
 
-    context 'nameが存在する場合' do
-      let(:name) { '専守防衛' }
-
+    context '存在しないSkillの場合' do
       it 'Ragnarok::Skillが1つ作成される' do
         expect(described_class.count).to eq 1
         expect(described_class.first.name).to eq name
       end
     end
 
-    context 'nameが存在しない場合' do
-      let(:name) { '' }
-
+    context '既に存在するSkillの場合' do
       it 'Ragnarok::Skillが作成されない' do
-        expect(described_class.count).to eq 0
+        expect(described_class.count).to eq 1
+        described_class.find_or_create!(name: name)
+        expect(described_class.count).to eq 1
       end
     end
   end

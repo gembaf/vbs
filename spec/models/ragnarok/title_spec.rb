@@ -21,6 +21,7 @@ describe Ragnarok::Title do
   context '.create_with_skill' do
     subject { described_class.create_with_skill(params) }
 
+    let(:title) { Ragnarok::Title.first }
     let(:medallion) { create(:ragnarok_medallion) }
     let(:params) do
       {
@@ -35,13 +36,12 @@ describe Ragnarok::Title do
 
     it 'Ragnarok::Titleモデルが１つできること' do
       expect(Ragnarok::Title.count).to eq 1
-      expect(Ragnarok::Title.first.name).to eq '激情の'
+      expect(title.name).to eq '激情の'
     end
 
     it 'Ragnarok::Skillモデルが１つできること' do
-      expect(Ragnarok::Skill.count).to eq 1
-      expect(Ragnarok::Skill.first.name).to eq '致命必殺'
-      expect(Ragnarok::Skill.first.point).to eq 10
+      expect(title.skill.name).to eq '致命必殺'
+      expect(title.skill.point).to eq 10
     end
   end
 end

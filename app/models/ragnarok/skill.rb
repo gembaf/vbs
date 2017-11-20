@@ -10,9 +10,18 @@
 
 module Ragnarok
   class Skill < ApplicationRecord
-    def self.create_with_valid(params)
-      return nil if params[:name].blank?
+    has_one :title_skill
+    has_one :title, through: :title_skill
+    accepts_nested_attributes_for :title_skill, allow_destroy: true
+
+    def self.find_or_create!(params)
+      skill = find_by(name: params[:name])
+      return skill if skill.present?
       create!(params)
+    end
+
+    def point
+      title_skill.point
     end
   end
 end
