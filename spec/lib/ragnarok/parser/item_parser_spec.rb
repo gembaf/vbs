@@ -1,0 +1,73 @@
+describe Ragnarok::Parser::ItemParser do
+  context '#parse' do
+    subject { described_class.new(doc).parse }
+
+    let(:doc) { Ragnarok::Parser.nokogiri(path).xpath('//tr').first }
+
+    context 'skillが1つの場合' do
+      let(:path) { Rails.root.join('spec/fixtures/item.html') }
+      let(:result) do
+        {
+          name: 'カッパーナイフ',
+          rare: 1,
+          skills: [{ skill_name: '致命必殺', skill_point: 5 }],
+        }
+      end
+
+      it '正常にパースできること' do
+        expect(subject).to eq result
+      end
+    end
+
+    context 'skillが2つの場合' do
+      let(:path) { Rails.root.join('spec/fixtures/item_skills.html') }
+      let(:result) do
+        {
+          name: 'ブラッドソード',
+          rare: 6,
+          skills: [
+            { skill_name: '呪の一撃', skill_point: 0 },
+            { skill_name: '吸血攻撃', skill_point: 5 },
+          ],
+        }
+      end
+
+      it '正常にパースできること' do
+        expect(subject).to eq result
+      end
+    end
+  end
+
+  context '#parse_skill' do
+    subject { described_class.new(nil).parse_skill(data) }
+
+    context 'skill_nameとskill_pointがある場合' do
+      let(:data) { '致命必殺:50' }
+      let(:result) do
+        {
+          skill_name: '致命必殺',
+          skill_point: 50,
+        }
+      end
+
+      it '正常にパースできること' do
+        expect(subject).to eq result
+      end
+    end
+
+    context 'skill_nameしかない場合' do
+      let(:data) { '専守防衛' }
+      let(:result) do
+        {
+          skill_name: '専守防衛',
+          skill_point: 0,
+        }
+      end
+
+      it '正常にパースできること' do
+        expect(subject).to eq result
+      end
+    end
+  end
+end
+
