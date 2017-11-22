@@ -16,6 +16,17 @@ module Ragnarok
           end
         end
       end
+
+      def self.import_item
+        data = ItemParseService.new.call
+
+        data.each do |type, items_params|
+          items_params.each do |params|
+            params[:type] = type
+            Item.create_with_skill(params)
+          end
+        end
+      end
     end
   end
 end

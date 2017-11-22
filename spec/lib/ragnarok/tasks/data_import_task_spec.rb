@@ -16,5 +16,16 @@ describe Ragnarok::Tasks::DataImportTask do
       expect(medallion.titles.first.name).to eq '極夜の'
     end
   end
+
+  context '.import_item' do
+    subject { described_class.import_item }
+
+    it 'データが登録されていること' do
+      subject
+
+      expect(Ragnarok::Item.first.name).to eq 'カッパーナイフ'
+      expect(Ragnarok::Item.last.name).to eq '極竜の心臓'
+    end
+  end
 end
 
