@@ -3,6 +3,7 @@ module Ragnarok
     class DataImportTask
       def self.execute
         import_medallion
+        import_item
       end
 
       def self.import_medallion

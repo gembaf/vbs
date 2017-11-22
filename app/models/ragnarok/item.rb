@@ -23,10 +23,10 @@ module Ragnarok
       skills = params.delete(:skills)
 
       create!(params).tap do |item|
-        skills.each do |skill|
-          next if skill[:skill_name].blank?
-          skill = Skill.find_or_create!(name: skill[:skill_name])
-          ItemSkill.create!(point: skill[:skill_point], item: item, skill: skill)
+        skills.each do |param|
+          next if param[:skill_name].blank?
+          skill = Skill.find_or_create!(name: param[:skill_name])
+          ItemSkill.create!(point: param[:skill_point], item: item, skill: skill)
         end
       end
     end
