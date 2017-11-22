@@ -10,6 +10,10 @@ describe Ragnarok::Parser::ItemParser do
         {
           name: 'カッパーナイフ',
           rare: 1,
+          attack: 2,
+          defense: 0,
+          speed: 2,
+          intelligence: 0,
           skills: [{ skill_name: '致命必殺', skill_point: 5 }],
         }
       end
@@ -25,6 +29,10 @@ describe Ragnarok::Parser::ItemParser do
         {
           name: 'ブラッドソード',
           rare: 6,
+          attack: 16,
+          defense: 4,
+          speed: 0,
+          intelligence: 0,
           skills: [
             { skill_name: '呪の一撃', skill_point: 0 },
             { skill_name: '吸血攻撃', skill_point: 5 },

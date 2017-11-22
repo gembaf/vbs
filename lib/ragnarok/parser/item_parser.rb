@@ -15,6 +15,10 @@ module Ragnarok
         {
           rare: elem[0].to_i,
           name: elem[1],
+          attack: elem[4].to_i,
+          defense: elem[5].to_i,
+          speed: elem[6].to_i,
+          intelligence: elem[7].to_i,
           skills: skills,
         }
       end
