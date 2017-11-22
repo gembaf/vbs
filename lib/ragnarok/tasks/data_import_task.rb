@@ -1,7 +1,11 @@
 module Ragnarok
   module Tasks
-    class MedallionImportTask
+    class DataImportTask
       def self.execute
+        import_medallion
+      end
+
+      def self.import_medallion
         data = MedallionParseService.new.call
 
         data.each do |medallion_params, titles_params|

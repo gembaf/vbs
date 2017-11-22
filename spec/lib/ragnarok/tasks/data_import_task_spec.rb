@@ -1,6 +1,6 @@
-describe Ragnarok::Tasks::MedallionImportTask do
-  context '.execute' do
-    subject { described_class.execute }
+describe Ragnarok::Tasks::DataImportTask do
+  context '.import_medallion' do
+    subject { described_class.import_medallion }
 
     it 'データが登録されていること' do
       subject
