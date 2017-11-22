@@ -24,6 +24,7 @@ module Ragnarok
         skills = []
         skills << parse_skill(td.children[0].text)
         skills << parse_skill(td.children[2].text) if td.children[2]
+        skills
       end
 
       def parse_skill(data)
