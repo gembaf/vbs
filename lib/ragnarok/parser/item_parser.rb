@@ -8,9 +8,6 @@ module Ragnarok
       def parse
         tds = @doc.xpath('td')
         elem = tds.map(&:text)
-        skills = []
-        skills << parse_skill(tds[8].children[0].text)
-        skills << parse_skill(tds[8].children[2].text) if tds[8].children[2]
 
         {
           rare: elem[0].to_i,
@@ -19,8 +16,14 @@ module Ragnarok
           defense: elem[5].to_i,
           speed: elem[6].to_i,
           intelligence: elem[7].to_i,
-          skills: skills,
+          skills: skills(tds[8]),
         }
+      end
+
+      def skills(td)
+        skills = []
+        skills << parse_skill(td.children[0].text)
+        skills << parse_skill(td.children[2].text) if td.children[2]
       end
 
       def parse_skill(data)
