@@ -25,6 +25,10 @@ describe Ragnarok::Tasks::DataImportTask do
 
       expect(Ragnarok::Item.first.name).to eq 'カッパーナイフ'
       expect(Ragnarok::Item.last.name).to eq '極竜の心臓'
+
+      item = Ragnarok::Item.first
+
+      expect(item.item_skills.first.name).to eq '致命必殺'
     end
   end
 end

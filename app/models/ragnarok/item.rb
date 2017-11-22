@@ -16,13 +16,18 @@
 
 module Ragnarok
   class Item < ApplicationRecord
+    has_many :item_skills
+    has_many :skills, through: :item_skills
+
     def self.create_with_skill(params)
       skills = params.delete(:skills)
 
-      create!(params).tap do |title|
-        # next if skill_name.blank?
-        # skill = Skill.find_or_create!(name: skill_name)
-        # TitleSkill.create!(point: skill_point, title: title, skill: skill)
+      create!(params).tap do |item|
+        skills.each do |skill|
+          next if skill[:skill_name].blank?
+          skill = Skill.find_or_create!(name: skill[:skill_name])
+          ItemSkill.create!(point: skill[:skill_point], item: item, skill: skill)
+        end
       end
     end
   end
