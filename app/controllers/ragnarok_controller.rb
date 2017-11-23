@@ -12,8 +12,10 @@ class RagnarokController < ApplicationController
   end
 
   def units
-    @units = Ragnarok::Unit.includes_all.all
     @types = Ragnarok::Unit.pluck(:type).uniq
+    @type = params[:type] ? params[:type] : @types.first
+
+    @units = Ragnarok::Unit.includes_all.where(type: @type)
   end
 end
 
