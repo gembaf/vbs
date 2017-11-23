@@ -40,6 +40,42 @@ describe Ragnarok::Parser::UnitParser do
         expect(subject).to eq result
       end
     end
+
+    context 'リンクがあるskillの場合' do
+      let(:path) { Rails.root.join('spec/fixtures/unit_link.html') }
+      let(:result) do
+        {
+          name: 'ゴブリン',
+          type: '亜人',
+          protection: '火',
+          profession: 'ブレイダー',
+          hp: 75,
+          attack: 2,
+          defense: 3,
+          speed: 4,
+          intelligence: 2,
+          tribe: '男魔獣',
+          specialty: '樹',
+          equipments: '片手,鎧',
+          rank: 'S',
+          cost: 1,
+          passive_skills: [
+            { name: '多段攻撃', point: 1 },
+            { name: 'トレハン', point: 5 },
+            { name: '撃破金運', point: 1 },
+            { name: 'イベイド', point: 5 },
+          ],
+          leader_skills: [
+            { name: '必殺増加', point: 20 },
+            { name: '撃破金運', point: 2 },
+          ],
+        }
+      end
+
+      it '正常にパースできること' do
+        expect(subject).to eq result
+      end
+    end
   end
 
   context '#parse_skill' do
