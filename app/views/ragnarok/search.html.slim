@@ -1,1 +1,31 @@
+= form_tag ragnarok_search_path, method: :get do
+  = text_field_tag :skill_name
+  = submit_tag '検索'
+
+table.table.table-bordered.middle
+  tr
+    th.center rowspan='2' 名称
+    th.center ランク
+    th.center 加護
+    th.center 種族
+    th.center rowspan='2' パッシブスキル
+    th.center rowspan='2' リーダースキル
+    th.center rowspan='2' 称号
+    th.center rowspan='2' 装備
+  tr
+    th.center colspan='2' 職業
+    th.center 特攻
+  - @units.each do |unit|
+    tr
+      td rowspan='2' = unit.name
+      td.center= unit.rank
+      td.center= unit.protection
+      td.center= unit.tribe
+      td rowspan='2' = sanitize unit.passive_skill_texts
+      td rowspan='2' = sanitize unit.leader_skill_texts
+      td rowspan='2' = sanitize unit.leader_skill_texts
+      td.center rowspan='2' = sanitize unit.item_text
+    tr
+      td.center colspan='2' = unit.profession
+      td.center= unit.specialty
 

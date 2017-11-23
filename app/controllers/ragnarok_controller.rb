@@ -3,6 +3,10 @@ class RagnarokController < ApplicationController
   end
 
   def search
+    skill = Ragnarok::Skill.find_by(name: params[:skill_name])
+    unit_ids = Ragnarok::PassiveSkill.where(skill: skill).pluck(:unit_id)
+    unit_ids += Ragnarok::LeaderSkill.where(skill: skill).pluck(:unit_id)
+    @units = Ragnarok::Unit.includes_all.where(id: unit_ids)
   end
 
   def medallions
