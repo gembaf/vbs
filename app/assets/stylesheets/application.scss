@@ -23,7 +23,9 @@
   text-align: right;
 }
 
-.middle > tbody > tr > td {
-  vertical-align: middle;
+.middle > tbody > tr {
+  td, th {
+    vertical-align: middle;
+  }
 }
 
