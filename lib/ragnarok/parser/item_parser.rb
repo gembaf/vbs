@@ -21,10 +21,8 @@ module Ragnarok
       end
 
       def skills(td)
-        skills = []
-        skills << parse_skill(td.children[0].text)
-        skills << parse_skill(td.children[2].text) if td.children[2]
-        skills
+        skills = td.inner_html.sub(/<!--autolink-->.*?>/, '').sub(/<\/a>.*?>/, '').split(/<br.*?>/)
+        skills.map { |s| parse_skill(s) }
       end
 
       def parse_skill(data)
