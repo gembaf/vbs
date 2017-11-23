@@ -7,7 +7,7 @@ class RagnarokController < ApplicationController
   end
 
   def items
-    @items = Ragnarok::Item.all
+    @items = Ragnarok::Item.includes(item_skills: :skill).all
     @types = Ragnarok::Item.pluck(:type).uniq
   end
 end
