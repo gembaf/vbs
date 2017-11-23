@@ -1,0 +1,22 @@
+- @types.each do |type|
+  h4.alert.alert-success= type
+
+  table.table.table-bordered.middle
+    tr
+      th.center レア
+      th.center 名称
+      th.center 攻
+      th.center 防
+      th.center 速
+      th.center 知
+      th.center スキル
+    - @items.where(type: type).each do |item|
+      tr
+        td.center= item.rare
+        td= item.name
+        td.right= item.attack
+        td.right= item.defense
+        td.right= item.speed
+        td.right= item.intelligence
+        td= sanitize item.skill_texts
+
