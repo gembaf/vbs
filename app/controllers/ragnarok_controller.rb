@@ -3,11 +3,11 @@ class RagnarokController < ApplicationController
   end
 
   def medallions
-    @medallions = Ragnarok::Medallion.includes(titles: { title_skill: :skill }).all
+    @medallions = Ragnarok::Medallion.includes_all.all
   end
 
   def items
-    @items = Ragnarok::Item.includes(item_skills: :skill).all
+    @items = Ragnarok::Item.includes_all.all
     @types = Ragnarok::Item.pluck(:type).uniq
   end
 end

@@ -19,6 +19,8 @@ module Ragnarok
     has_many :item_skills
     has_many :skills, through: :item_skills
 
+    scope :includes_all, -> { includes(item_skills: :skill) }
+
     def self.create_with_skill(params)
       skills = params.delete(:skills)
 
