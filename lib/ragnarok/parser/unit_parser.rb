@@ -42,7 +42,7 @@ module Ragnarok
 
       def parse_skill(data)
         name, point = data.split('[')
-        point.delete(']') if point
+        point&.delete(']')
         { name: name, point: point.to_i }
       end
     end

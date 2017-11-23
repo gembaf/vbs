@@ -21,9 +21,13 @@ Documentation:
 
 AbcSize:
   Max: 25
+  Exclude:
+    - 'lib/ragnarok/parser/**/*'
 
 MethodLength:
   Max: 20
+  Exclude:
+    - 'lib/ragnarok/parser/**/*'
 
 LineLength:
   Enabled: false
