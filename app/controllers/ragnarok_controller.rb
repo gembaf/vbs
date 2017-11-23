@@ -2,6 +2,9 @@ class RagnarokController < ApplicationController
   def index
   end
 
+  def search
+  end
+
   def medallions
     @medallions = Ragnarok::Medallion.includes_all.all
   end

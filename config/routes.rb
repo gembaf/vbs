@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get 'ragnarok/medallions' => 'ragnarok#medallions'
   get 'ragnarok/items' => 'ragnarok#items'
   get 'ragnarok/units' => 'ragnarok#units'
+  get 'ragnarok/search' => 'ragnarok#search'
 end
 
