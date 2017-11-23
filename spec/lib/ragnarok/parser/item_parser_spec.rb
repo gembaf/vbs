@@ -44,6 +44,28 @@ describe Ragnarok::Parser::ItemParser do
         expect(subject).to eq result
       end
     end
+
+    context 'link付きの場合' do
+      let(:path) { Rails.root.join('spec/fixtures/item_link.html') }
+      let(:result) do
+        {
+          name: 'グングニル・ミニ',
+          rare: 11,
+          attack: 20,
+          defense: 20,
+          speed: 20,
+          intelligence: 0,
+          skills: [
+            { skill_name: 'トレハン', skill_point: 14 },
+            { skill_name: '神族活性', skill_point: 25 },
+          ],
+        }
+      end
+
+      it '正常にパースできること' do
+        expect(subject).to eq result
+      end
+    end
   end
 
   context '#parse_skill' do
