@@ -3,7 +3,7 @@ class RagnarokController < ApplicationController
   end
 
   def medallions
-    @medallions = Ragnarok::Medallion.all
+    @medallions = Ragnarok::Medallion.includes(titles: { title_skill: :skill }).all
   end
 
   def items
