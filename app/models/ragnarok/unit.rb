@@ -1,6 +1,6 @@
 module Ragnarok
   class Unit < ApplicationRecord
-    RANK = { S: 6, A: 5, B: 4, C: 3, D: 2, E: 1 }
+    RANK = { S: 6, A: 5, B: 4, C: 3, D: 2, E: 1 }.freeze
 
     enum rank: RANK
 
