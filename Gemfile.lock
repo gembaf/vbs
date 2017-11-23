@@ -53,6 +53,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    bullet (5.6.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (9.1.0)
     capistrano (3.10.0)
       airbrussh (>= 1.0.0)
@@ -252,6 +255,7 @@ GEM
     unicorn (5.3.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    uniform_notifier (1.10.0)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -268,6 +272,7 @@ DEPENDENCIES
   active_decorator
   annotate
   bootstrap-sass
+  bullet
   capistrano (~> 3.10.0)
   capistrano-bundler
   capistrano-rails
