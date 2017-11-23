@@ -15,6 +15,8 @@
 module Ragnarok
   class Medallion < ApplicationRecord
     has_many :titles
+
+    scope :includes_all, -> { includes(titles: { title_skill: :skill }) }
   end
 end
 

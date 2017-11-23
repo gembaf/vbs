@@ -45,6 +45,7 @@ group :development do
   gem 'rubocop'
   gem 'pry-rails'
   gem 'annotate'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
