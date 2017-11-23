@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   #-- ragnarok
   get 'ragnarok' => 'ragnarok#index'
   get 'ragnarok/medallions' => 'ragnarok#medallions'
+  get 'ragnarok/items' => 'ragnarok#items'
 end
 
