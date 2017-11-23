@@ -21,7 +21,7 @@ module Ragnarok
       end
 
       def skills(td)
-        skills = td.inner_html.sub(/<!--autolink-->.*?>/, '').sub(/<\/a>.*?>/, '').split(/<br.*?>/)
+        skills = td.inner_html.sub(/<!--autolink-->.*?>/, '').sub(%r{</a>.*?>}, '').split(/<br.*?>/)
         skills.map { |s| parse_skill(s) }
       end
 
