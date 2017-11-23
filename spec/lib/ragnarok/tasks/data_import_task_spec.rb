@@ -32,5 +32,21 @@ describe Ragnarok::Tasks::DataImportTask do
       expect(skill.point).to eq 5
     end
   end
+
+  context '.import_unit' do
+    subject { described_class.import_unit }
+
+    it 'データが登録されていること' do
+      subject
+
+      expect(Ragnarok::Unit.first.name).to eq 'ゴブリン'
+      expect(Ragnarok::Unit.last.name).to eq '天帝梵阿'
+
+      # skill = Ragnarok::Item.first.item_skills.first
+
+      # expect(skill.name).to eq '致命必殺'
+      # expect(skill.point).to eq 5
+    end
+  end
 end
 

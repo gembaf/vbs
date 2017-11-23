@@ -4,6 +4,7 @@ module Ragnarok
       def self.execute
         import_medallion
         import_item
+        import_unit
       end
 
       def self.import_medallion
@@ -26,6 +27,18 @@ module Ragnarok
             params[:type] = type
             Item.create_with_skill(params)
           end
+        end
+      end
+
+      def self.import_unit
+        data = UnitParseService.new.call
+
+        data.each do |params|
+          item1, item2 = params.delete(:equipments).split(',')
+          params[:item1] = item1
+          params[:item2] = item2
+
+          Unit.create_with_skill(params)
         end
       end
     end
