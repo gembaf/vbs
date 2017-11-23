@@ -42,10 +42,13 @@ describe Ragnarok::Tasks::DataImportTask do
       expect(Ragnarok::Unit.first.name).to eq 'ゴブリン'
       expect(Ragnarok::Unit.last.name).to eq '天帝梵阿'
 
-      # skill = Ragnarok::Item.first.item_skills.first
+      passive_skill = Ragnarok::Unit.first.passive_skills.first
+      expect(passive_skill.name).to eq '多段攻撃'
+      expect(passive_skill.point).to eq 1
 
-      # expect(skill.name).to eq '致命必殺'
-      # expect(skill.point).to eq 5
+      # leader_skill = Ragnarok::Unit.first.leader_skills.first
+      # expect(leader_skill.name).to eq '多段攻撃'
+      # expect(leader_skill.point).to eq 1
     end
   end
 end
