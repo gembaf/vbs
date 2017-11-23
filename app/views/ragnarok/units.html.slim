@@ -1,40 +1,43 @@
-- @types.each do |type|
-  h4.alert.alert-success= type
+ul
+  - @types.each do |type|
+    li= link_to type, ragnarok_units_path(type: type)
 
-  table.table.table-bordered.middle
+h4.alert.alert-success= @type
+
+table.table.table-bordered.middle
+  tr
+    th.center rowspan='2' 名称
+    th.center ランク
+    th.center 種族
+    th.center rowspan='2' 装備
+    th.center 加護
+    th.center colspan='4' 職業
+    th.center rowspan='2' パッシブスキル
+    th.center rowspan='2' リーダースキル
+  tr
+    th.center コスト
+    th.center 特攻
+    th.center HP
+    th.center 攻
+    th.center 防
+    th.center 速
+    th.center 知
+  - @units.each do |unit|
     tr
-      th.center rowspan='2' 名称
-      th.center ランク
-      th.center 種族
-      th.center rowspan='2' 装備
-      th.center 加護
-      th.center colspan='4' 職業
-      th.center rowspan='2' パッシブスキル
-      th.center rowspan='2' リーダースキル
+      td rowspan='2' = unit.name
+      td.center= unit.rank
+      td.center= unit.tribe
+      td.center rowspan='2' = sanitize unit.item_text
+      td.center= unit.protection
+      td.center colspan='4' = unit.profession
+      td rowspan='2' = sanitize unit.passive_skill_texts
+      td rowspan='2' = sanitize unit.leader_skill_texts
     tr
-      th.center コスト
-      th.center 特攻
-      th.center HP
-      th.center 攻
-      th.center 防
-      th.center 速
-      th.center 知
-    - @units.where(type: type).each do |unit|
-      tr
-        td rowspan='2' = unit.name
-        td.center= unit.rank
-        td.center= unit.tribe
-        td.center rowspan='2' = sanitize unit.item_text
-        td.center= unit.protection
-        td.center colspan='4' = unit.profession
-        td rowspan='2' = sanitize unit.passive_skill_texts
-        td rowspan='2' = sanitize unit.leader_skill_texts
-      tr
-        td.center= unit.cost
-        td.center= unit.specialty
-        td.right= unit.hp
-        td.right= unit.attack
-        td.right= unit.defense
-        td.right= unit.speed
-        td.right= unit.intelligence
+      td.center= unit.cost
+      td.center= unit.specialty
+      td.right= unit.hp
+      td.right= unit.attack
+      td.right= unit.defense
+      td.right= unit.speed
+      td.right= unit.intelligence
 
