@@ -40,9 +40,9 @@ describe Ragnarok::Tasks::DataImportTask do
       subject
 
       expect(Ragnarok::Unit.first.name).to eq 'ゴブリン'
-      expect(Ragnarok::Unit.first.rank).to eq 6
+      expect(Ragnarok::Unit.first.rank).to eq 'S'
       expect(Ragnarok::Unit.last.name).to eq '天帝梵阿'
-      expect(Ragnarok::Unit.last.rank).to eq 3
+      expect(Ragnarok::Unit.last.rank).to eq 'C'
 
       passive_skill = Ragnarok::Unit.first.passive_skills.first
       expect(passive_skill.name).to eq '多段攻撃'
