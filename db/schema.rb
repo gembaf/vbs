@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122144523) do
+ActiveRecord::Schema.define(version: 20171123071410) do
 
   create_table "ragnarok_item_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "item_id", null: false
@@ -32,12 +32,28 @@ ActiveRecord::Schema.define(version: 20171122144523) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ragnarok_leader_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "unit_id", null: false
+    t.integer "skill_id", null: false
+    t.integer "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ragnarok_medallions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "short_name", null: false
     t.string "name", null: false
     t.integer "reality", null: false
     t.integer "resource", null: false
     t.integer "cost", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ragnarok_passive_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "unit_id", null: false
+    t.integer "skill_id", null: false
+    t.integer "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -69,6 +85,26 @@ ActiveRecord::Schema.define(version: 20171122144523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "medallion_id", null: false
+  end
+
+  create_table "ragnarok_units", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "type", null: false
+    t.string "protection", null: false
+    t.string "profession", null: false
+    t.integer "hp", null: false
+    t.integer "attack", null: false
+    t.integer "defense", null: false
+    t.integer "speed", null: false
+    t.integer "intelligence", null: false
+    t.string "tribe", null: false
+    t.string "specialty", null: false
+    t.string "item1", null: false
+    t.string "item2", null: false
+    t.integer "rank", default: 1, null: false
+    t.integer "cost", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

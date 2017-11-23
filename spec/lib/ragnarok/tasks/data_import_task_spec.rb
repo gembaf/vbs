@@ -32,5 +32,26 @@ describe Ragnarok::Tasks::DataImportTask do
       expect(skill.point).to eq 5
     end
   end
+
+  context '.import_unit' do
+    subject { described_class.import_unit }
+
+    it 'データが登録されていること' do
+      subject
+
+      expect(Ragnarok::Unit.first.name).to eq 'ゴブリン'
+      expect(Ragnarok::Unit.first.rank).to eq 'S'
+      expect(Ragnarok::Unit.last.name).to eq '天帝梵阿'
+      expect(Ragnarok::Unit.last.rank).to eq 'C'
+
+      passive_skill = Ragnarok::Unit.first.passive_skills.first
+      expect(passive_skill.name).to eq '多段攻撃'
+      expect(passive_skill.point).to eq 1
+
+      leader_skill = Ragnarok::Unit.first.leader_skills.first
+      expect(leader_skill.name).to eq '必殺増加'
+      expect(leader_skill.point).to eq 20
+    end
+  end
 end
 
