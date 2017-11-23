@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get 'ragnarok' => 'ragnarok#index'
   get 'ragnarok/medallions' => 'ragnarok#medallions'
   get 'ragnarok/items' => 'ragnarok#items'
+  get 'ragnarok/units' => 'ragnarok#units'
 end
 

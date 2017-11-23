@@ -5,6 +5,8 @@ module Ragnarok
     has_many :passive_skills
     has_many :leader_skills
 
+    scope :includes_all, -> { includes(passive_skills: :skill, leader_skills: :skill) }
+
     def self.create_with_skill(params)
       passive_skills = params.delete(:passive_skills)
       leader_skills = params.delete(:leader_skills)

@@ -1,0 +1,38 @@
+- @types.each do |type|
+  h4.alert.alert-success= type
+
+  table.table.table-bordered.middle
+    tr
+      th.center 名称
+      th.center 加護
+      th.center 職業
+      th.center HP
+      th.center 攻
+      th.center 防
+      th.center 速
+      th.center 知
+      th.center 種族
+      th.center 特攻
+      th.center 装備
+      th.center ランク
+      th.center コスト
+      th.center パッシブスキル
+      th.center リーダースキル
+    - @units.where(type: type).each do |unit|
+      tr
+        td= unit.name
+        td= unit.protection
+        td= unit.profession
+        td= unit.hp
+        td.right= unit.attack
+        td.right= unit.defense
+        td.right= unit.speed
+        td.right= unit.intelligence
+        td= unit.tribe
+        td= unit.specialty
+        td= unit.item1 + unit.item2
+        td= unit.rank
+        td= unit.cost
+        td= unit.passive_skills.map {|a| a.name}
+        td= unit.leader_skills.map {|a| a.name}
+
