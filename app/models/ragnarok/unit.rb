@@ -9,6 +9,13 @@ module Ragnarok
 
     scope :includes_all, -> { includes(passive_skills: :skill, leader_skills: :skill) }
 
+    def best_title_skills(skill_name:)
+      [
+        Ragnarok::Title.best_title_skill(skill_name: skill_name, prefix: true),
+        Ragnarok::Title.best_title_skill(skill_name: skill_name, suffix: true),
+      ]
+    end
+
     def self.create_with_skill(params)
       passive_skills = params.delete(:passive_skills)
       leader_skills = params.delete(:leader_skills)

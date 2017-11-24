@@ -34,13 +34,6 @@ module Ragnarok
       end
     end
 
-    def self.best_title_skills(skill_name:)
-      [
-        best_title_skill(skill_name: skill_name, prefix: true),
-        best_title_skill(skill_name: skill_name, suffix: true),
-      ]
-    end
-
     def self.best_title_skill(skill_name:, prefix: false, suffix: false)
       skill = Ragnarok::Skill.find_by(name: skill_name)
 
@@ -52,7 +45,7 @@ module Ragnarok
       value = hash.values.max
       id = hash.key(value)
 
-      Ragnarok::TitleSkill.find(id)
+      Ragnarok::TitleSkill.find_by(title_id: id)
     end
   end
 end

@@ -15,7 +15,7 @@ table.table.table-bordered.middle
   tr
     th.center colspan='2' 職業
     th.center 特攻
-  - @units.each do |unit|
+  - @data.transpose.each do |unit, best_title_skills|
     tr
       td rowspan='2' = unit.name
       td.center= unit.rank
@@ -23,7 +23,7 @@ table.table.table-bordered.middle
       td.center= unit.tribe
       td rowspan='2' = sanitize unit.passive_skill_texts
       td rowspan='2' = sanitize unit.leader_skill_texts
-      td rowspan='2' = sanitize unit.leader_skill_texts
+      td rowspan='2' = sanitize best_title_skills.map {|t| "#{t.name}:#{t.point}"}.join('<br>')
       td.center rowspan='2' = sanitize unit.item_text
     tr
       td.center colspan='2' = unit.profession
