@@ -44,5 +44,40 @@ describe Ragnarok::Title do
       expect(title.title_skill.point).to eq 10
     end
   end
+
+  context '.best_title_skill' do
+    include_context 'all'
+
+    subject { described_class.best_title_skill(skill_name: skill_name, prefix: prefix, suffix: suffix) }
+
+    before do
+      skills.each do |skill|
+        medallions.each.with_index(1).each do |medallion, i|
+          title = create(:ragnarok_title, medallion: medallion, prefix: true)
+          create(:ragnarok_title_skill, title: title, skill: skill, point: i * 10)
+        end
+      end
+    end
+
+    context 'prefixがtrueの場合' do
+      let(:skill_name) { '大雷撃陣' }
+      let(:prefix) { true }
+      let(:suffix) { false }
+
+      it '最もスキル値の高いTitleSkillが選択されること' do
+        expect(subject.id).to eq Ragnarok::TitleSkill.last.id
+      end
+    end
+
+    context 'suffixがtrueの場合' do
+      let(:skill_name) { '大雷撃陣' }
+      let(:prefix) { false }
+      let(:suffix) { true }
+
+      it 'nilが返ってくること' do
+        expect(subject).to eq nil
+      end
+    end
+  end
 end
 

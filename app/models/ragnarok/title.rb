@@ -33,6 +33,27 @@ module Ragnarok
         TitleSkill.create!(point: skill_point, title: title, skill: skill)
       end
     end
+
+    def self.best_title_skills(skill_name:)
+      [
+        best_title_skill(skill_name: skill_name, prefix: true),
+        best_title_skill(skill_name: skill_name, suffix: true),
+      ]
+    end
+
+    def self.best_title_skill(skill_name:, prefix: false, suffix: false)
+      skill = Ragnarok::Skill.find_by(name: skill_name)
+
+      title_skills = includes(title_skill: :skill)
+                       .where(ragnarok_title_skills: { skill_id: skill.id }, suffix: suffix, prefix: prefix)
+      return nil if title_skills.blank?
+
+      hash = title_skills.group(:id).maximum(:point)
+      value = hash.values.max
+      id = hash.key(value)
+
+      Ragnarok::TitleSkill.find(id)
+    end
   end
 end
 
