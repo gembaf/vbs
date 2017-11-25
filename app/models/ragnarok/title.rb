@@ -39,9 +39,9 @@ module Ragnarok
       return nil if skill.nil?
 
       title_skills = includes(:medallion, title_skill: :skill)
-                       .where(ragnarok_title_skills: { skill_id: skill.id })
-                       .where(ragnarok_medallions: { reality: reality_range })
-                       .where(suffix: suffix, prefix: prefix)
+                     .where(ragnarok_title_skills: { skill_id: skill.id })
+                     .where(ragnarok_medallions: { reality: reality_range })
+                     .where(suffix: suffix, prefix: prefix)
       return nil if title_skills.blank?
 
       hash = title_skills.group(:id).maximum(:point)

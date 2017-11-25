@@ -26,8 +26,8 @@ module Ragnarok
       return nil if skill.nil?
 
       item_skills = includes(item_skills: :skill)
-                      .where(ragnarok_item_skills: { skill_id: skill.id })
-                      .where(type: item_type, rare: 1..limit_rank)
+                    .where(ragnarok_item_skills: { skill_id: skill.id })
+                    .where(type: item_type, rare: 1..limit_rank)
       return nil if item_skills.blank?
 
       hash = item_skills.group(:id).maximum(:point)

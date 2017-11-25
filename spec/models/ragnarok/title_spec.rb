@@ -45,7 +45,7 @@ describe Ragnarok::Title do
     end
   end
 
-  context '.best_title_skill' do
+  xcontext '.best_title_skill' do
     include_context 'all'
 
     subject do
