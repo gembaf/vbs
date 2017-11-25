@@ -18,9 +18,9 @@ module Ragnarok
       Ragnarok::TitleSkill.where(title_id: [id1, id2])
     end
 
-    def self.where_like_tribe(name)
+    def self.where_like(column, name)
       names = name.split('')
-      query = names.map { |n| "tribe like '%#{n}%'" }.join(' AND ')
+      query = names.map { |n| "#{column} like '%#{n}%'" }.join(' AND ')
       where(query)
     end
 

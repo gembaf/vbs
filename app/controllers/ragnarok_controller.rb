@@ -8,6 +8,9 @@ class RagnarokController < ApplicationController
     @tribe_name = params[:tribe_name]
     tribe_ids = finder.tribe(@tribe_name) if @tribe_name.present?
 
+    @protection_name = params[:protection_name]
+    protection_ids = finder.protection(@protection_name) if @protection_name.present?
+
     @skill_name = params[:skill_name]
     if @skill_name.present?
       skill = Ragnarok::Skill.find_by(name: @skill_name)
@@ -15,7 +18,7 @@ class RagnarokController < ApplicationController
       skill_ids += Ragnarok::LeaderSkill.where(skill: skill).pluck(:unit_id)
     end
 
-    unit_ids = tribe_ids & skill_ids
+    unit_ids = tribe_ids & protection_ids
     units = Ragnarok::Unit.where(id: unit_ids)
 
     @data = [

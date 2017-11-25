@@ -1,6 +1,6 @@
 describe Ragnarok::Unit do
-  context '.where_like_tribe' do
-    subject { described_class.where_like_tribe(name) }
+  context '.where_like' do
+    subject { described_class.where_like('tribe', name) }
 
     before do
       create(:ragnarok_unit, tribe: '男魔獣人')
