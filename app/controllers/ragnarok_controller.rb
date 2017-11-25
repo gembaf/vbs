@@ -12,6 +12,9 @@ class RagnarokController < ApplicationController
     @protection_name = params[:protection_name]
     each_ids << finder.by_protection(@protection_name) if @protection_name.present?
 
+    @profession_name = params[:profession_name]
+    each_ids << Ragnarok::Unit.where(profession: @profession_name).pluck(:id) if @profession_name.present?
+
     @skill_name = params[:skill_name]
     each_ids << finder.by_skill(@skill_name) if @skill_name.present?
 
