@@ -18,6 +18,12 @@ module Ragnarok
       Ragnarok::TitleSkill.where(title_id: [id1, id2])
     end
 
+    def self.where_like_tribe(name)
+      names = name.split('')
+      query = names.map { |n| "tribe like '%#{n}%'" }.join(' AND ')
+      where(query)
+    end
+
     def self.create_with_skill(params)
       passive_skills = params.delete(:passive_skills)
       leader_skills = params.delete(:leader_skills)

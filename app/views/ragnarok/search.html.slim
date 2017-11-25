@@ -1,5 +1,8 @@
 = form_tag ragnarok_search_path, method: :get do
-  = text_field_tag :skill_name
+  label 種族名
+  = text_field_tag :tribe_name, @tribe_name
+  label スキル名
+  = text_field_tag :skill_name, @skill_name
   = submit_tag '検索'
 
 table.table.table-bordered.middle

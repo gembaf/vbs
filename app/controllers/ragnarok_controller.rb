@@ -3,9 +3,19 @@ class RagnarokController < ApplicationController
   end
 
   def search
-    skill = Ragnarok::Skill.find_by(name: params[:skill_name])
-    unit_ids = Ragnarok::PassiveSkill.where(skill: skill).pluck(:unit_id)
-    unit_ids += Ragnarok::LeaderSkill.where(skill: skill).pluck(:unit_id)
+    @tribe_name = params[:tribe_name]
+    if @tribe_name.present?
+      tribe_ids = Ragnarok::Unit.where_like_tribe(@tribe_name).pluck(:id)
+    end
+
+    @skill_name = params[:skill_name]
+    if @skill_name.present?
+      skill = Ragnarok::Skill.find_by(name: @skill_name)
+      skill_ids = Ragnarok::PassiveSkill.where(skill: skill).pluck(:unit_id)
+      skill_ids += Ragnarok::LeaderSkill.where(skill: skill).pluck(:unit_id)
+    end
+
+    unit_ids = tribe_ids & skill_ids
     units = Ragnarok::Unit.where(id: unit_ids)
 
     @data = [
