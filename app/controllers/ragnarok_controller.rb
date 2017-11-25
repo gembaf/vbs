@@ -21,7 +21,7 @@ class RagnarokController < ApplicationController
     units = Ragnarok::Unit.where(id: unit_ids).limit(30)
     @data = [
       units,
-      units.map {|unit| unit.best_title_skills(skill_name: @skill_name) },
+      units.map {|unit| unit.best_title_skills(skill_name: @skill_name.split.first) },
     ].transpose
   end
 

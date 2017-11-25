@@ -8,12 +8,19 @@ module Ragnarok
       Ragnarok::Unit.where_like('protection', name).pluck(:id)
     end
 
-    def by_skill(name)
-      skill = Ragnarok::Skill.find_by(name: name)
+    def by_skill(names)
+      each_ids = Ragnarok::Unit.pluck(:id)
 
-      ids = Ragnarok::PassiveSkill.where(skill: skill).pluck(:unit_id)
-      ids += Ragnarok::LeaderSkill.where(skill: skill).pluck(:unit_id)
-      ids
+      names.split.each do |name|
+        skill = Ragnarok::Skill.find_by(name: name)
+
+        ids = Ragnarok::PassiveSkill.where(skill: skill).pluck(:unit_id)
+        ids += Ragnarok::LeaderSkill.where(skill: skill).pluck(:unit_id)
+
+        each_ids &= ids
+      end
+
+      each_ids
     end
   end
 end
