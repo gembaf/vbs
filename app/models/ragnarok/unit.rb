@@ -12,10 +12,10 @@ module Ragnarok
     def best_title_skills(skill_name:, through_limit: false)
       range = Ragnarok::Medallion.reality_range(rank, through_limit)
 
-      [
-        Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, prefix: true),
-        Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, suffix: true),
-      ]
+      id1 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, prefix: true)
+      id2 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, suffix: true)
+
+      Ragnarok::TitleSkill.where(title_id: [id1, id2])
     end
 
     def self.create_with_skill(params)

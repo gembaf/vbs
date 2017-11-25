@@ -74,7 +74,7 @@ describe Ragnarok::Title do
       let(:prefix) { true }
 
       it '最もスキル値の高いTitleSkillが選択されること' do
-        expect(subject.id).to eq Ragnarok::TitleSkill.last.id
+        expect(subject).to eq Ragnarok::TitleSkill.last.id
       end
     end
 
@@ -94,7 +94,7 @@ describe Ragnarok::Title do
       let(:reality_range) { 1..4 }
 
       it 'reality_rangeの範囲でスキル値の高いTitleSkillが選択されること' do
-        expect(subject.id).to eq Ragnarok::TitleSkill.all[6].id
+        expect(subject).to eq Ragnarok::TitleSkill.all[6].id
       end
     end
   end

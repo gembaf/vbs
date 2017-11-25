@@ -45,9 +45,7 @@ module Ragnarok
 
       hash = title_skills.group(:id).maximum(:point)
       value = hash.values.max
-      id = hash.key(value)
-
-      Ragnarok::TitleSkill.find_by(title_id: id)
+      hash.key(value)
     end
   end
 end
