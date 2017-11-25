@@ -4,12 +4,13 @@ class RagnarokController < ApplicationController
 
   def search
     finder = Ragnarok::UnitFinder.new
+    each_ids = []
 
     @tribe_name = params[:tribe_name]
-    tribe_ids = finder.tribe(@tribe_name) if @tribe_name.present?
+    each_ids << finder.tribe(@tribe_name) if @tribe_name.present?
 
     @protection_name = params[:protection_name]
-    protection_ids = finder.protection(@protection_name) if @protection_name.present?
+    each_ids << finder.protection(@protection_name) if @protection_name.present?
 
     @skill_name = params[:skill_name]
     if @skill_name.present?
@@ -18,13 +19,17 @@ class RagnarokController < ApplicationController
       skill_ids += Ragnarok::LeaderSkill.where(skill: skill).pluck(:unit_id)
     end
 
-    unit_ids = tribe_ids & protection_ids
-    units = Ragnarok::Unit.where(id: unit_ids)
+    unit_ids = Ragnarok::Unit.pluck(:id)
+    each_ids.each do |ids|
+      unit_ids &= ids
+    end
+
+    units = Ragnarok::Unit.where(id: unit_ids).limit(30)
 
     @data = [
       units,
       units.map {|unit| unit.best_title_skills(skill_name: skill.name) },
-    ].transpose.slice(0...30)
+    ].transpose
   end
 
   def medallions
