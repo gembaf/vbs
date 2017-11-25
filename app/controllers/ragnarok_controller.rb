@@ -13,12 +13,14 @@ class RagnarokController < ApplicationController
 
     @data = units.map do |unit|
       if params[:title_skill_name].present?
-        title_skill = unit.best_title_skills(skill_name: params[:title_skill_name])
+        title_skills = unit.best_title_skills(skill_name: params[:title_skill_name])
       end
+      item_skills = unit.best_item_skills(skill_name: params[:item_skill_name], limit_rank: 13)
 
       [
         unit,
-        title_skill ? title_skill : [nil, nil],
+        title_skills ? title_skills : [nil, nil],
+        item_skills ? item_skills : [nil, nil],
       ]
     end
   end

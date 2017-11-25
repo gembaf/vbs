@@ -20,6 +20,13 @@ module Ragnarok
       @title_skills[rank] = Ragnarok::TitleSkill.where(title_id: [id1, id2])
     end
 
+    def best_item_skills(skill_name:, limit_rank: 1)
+      id1 = Ragnarok::Item.best_item_skill(item_type: item1, skill_name: skill_name, limit_rank: limit_rank)
+      id2 = Ragnarok::Item.best_item_skill(item_type: item2, skill_name: skill_name, limit_rank: limit_rank)
+
+      Ragnarok::ItemSkill.where(item_id: [id1, id2])
+    end
+
     def self.where_like(column, name)
       names = name.split('')
       query = names.map { |n| "#{column} like '%#{n}%'" }.join(' AND ')
