@@ -10,12 +10,14 @@ module Ragnarok
     scope :includes_all, -> { includes(passive_skills: :skill, leader_skills: :skill) }
 
     def best_title_skills(skill_name:, through_limit: false)
-      range = Ragnarok::Medallion.reality_range(rank, through_limit)
+      @title_skills ||= {}
+      return @title_skills[rank] if @title_skills[rank]
 
+      range = Ragnarok::Medallion.reality_range(rank, through_limit)
       id1 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, prefix: true)
       id2 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, suffix: true)
 
-      Ragnarok::TitleSkill.where(title_id: [id1, id2])
+      @title_skills[rank] = Ragnarok::TitleSkill.where(title_id: [id1, id2])
     end
 
     def self.where_like(column, name)

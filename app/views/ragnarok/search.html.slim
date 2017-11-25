@@ -1,14 +1,16 @@
 = form_tag ragnarok_search_path, method: :get do
   label 名前
-  = text_field_tag :unit_name, @unit_name
+  = text_field_tag :unit_name, params[:unit_name]
   label 加護
-  = text_field_tag :protection_name, @protection_name
+  = text_field_tag :protection_name, params[:protection_name]
   label 職業
-  = text_field_tag :profession_name, @profession_name
+  = text_field_tag :profession_name, params[:profession_name]
   label 種族名
-  = text_field_tag :tribe_name, @tribe_name
+  = text_field_tag :tribe_name, params[:tribe_name]
   label スキル名
-  = text_field_tag :skill_name, @skill_name
+  = text_field_tag :skill_name, params[:skill_name]
+  label 追加スキル名
+  = text_field_tag :title_skill_name, params[:title_skill_name]
   = submit_tag '検索'
 
 table.table.table-bordered.middle
