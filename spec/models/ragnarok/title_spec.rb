@@ -48,7 +48,17 @@ describe Ragnarok::Title do
   context '.best_title_skill' do
     include_context 'all'
 
-    subject { described_class.best_title_skill(skill_name: skill_name, prefix: prefix, suffix: suffix) }
+    subject do
+      described_class.best_title_skill(
+        skill_name: skill_name,
+        reality_range: reality_range,
+        prefix: prefix,
+        suffix: suffix,
+      )
+    end
+
+    let(:reality_range) { 1..8 }
+    let(:suffix) { false }
 
     before do
       skills.each do |skill|
@@ -62,7 +72,6 @@ describe Ragnarok::Title do
     context 'prefixがtrueの場合' do
       let(:skill_name) { '大雷撃陣' }
       let(:prefix) { true }
-      let(:suffix) { false }
 
       it '最もスキル値の高いTitleSkillが選択されること' do
         expect(subject.id).to eq Ragnarok::TitleSkill.last.id
@@ -76,6 +85,16 @@ describe Ragnarok::Title do
 
       it 'nilが返ってくること' do
         expect(subject).to eq nil
+      end
+    end
+
+    context 'reality_rangeが指定された場合' do
+      let(:skill_name) { '大雷撃陣' }
+      let(:prefix) { true }
+      let(:reality_range) { 1..4 }
+
+      it 'reality_rangeの範囲でスキル値の高いTitleSkillが選択されること' do
+        expect(subject.id).to eq Ragnarok::TitleSkill.all[6].id
       end
     end
   end

@@ -9,10 +9,12 @@ module Ragnarok
 
     scope :includes_all, -> { includes(passive_skills: :skill, leader_skills: :skill) }
 
-    def best_title_skills(skill_name:)
+    def best_title_skills(skill_name:, through_limit: false)
+      range = Ragnarok::Medallion.reality_range(rank, through_limit)
+
       [
-        Ragnarok::Title.best_title_skill(skill_name: skill_name, prefix: true),
-        Ragnarok::Title.best_title_skill(skill_name: skill_name, suffix: true),
+        Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, prefix: true),
+        Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, suffix: true),
       ]
     end
 
