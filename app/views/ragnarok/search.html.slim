@@ -1,4 +1,6 @@
 = form_tag ragnarok_search_path, method: :get do
+  label 名前
+  = text_field_tag :unit_name, @unit_name
   label 加護
   = text_field_tag :protection_name, @protection_name
   label 職業

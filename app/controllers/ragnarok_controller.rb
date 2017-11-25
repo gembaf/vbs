@@ -6,6 +6,9 @@ class RagnarokController < ApplicationController
     finder = Ragnarok::UnitFinder.new
     each_ids = []
 
+    @unit_name = params[:unit_name]
+    each_ids << [Ragnarok::Unit.find_by(name: @unit_name).id] if @unit_name.present?
+
     @tribe_name = params[:tribe_name]
     each_ids << finder.by_tribe(@tribe_name) if @tribe_name.present?
 
