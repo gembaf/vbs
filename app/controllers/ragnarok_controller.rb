@@ -3,10 +3,10 @@ class RagnarokController < ApplicationController
   end
 
   def search
+    finder = Ragnarok::UnitFinder.new
+
     @tribe_name = params[:tribe_name]
-    if @tribe_name.present?
-      tribe_ids = Ragnarok::Unit.where_like_tribe(@tribe_name).pluck(:id)
-    end
+    tribe_ids = finder.tribe(@tribe_name) if @tribe_name.present?
 
     @skill_name = params[:skill_name]
     if @skill_name.present?
