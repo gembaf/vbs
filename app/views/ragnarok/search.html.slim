@@ -37,7 +37,13 @@ table.table.table-bordered.middle
       td rowspan='2'
         - prefix, suffix = best_title_skills
         = sanitize [prefix&.rich_skill_text('接頭'), suffix&.rich_skill_text('接尾')].join('<br>')
-      td rowspan='2' = sanitize best_item_skills.map { |t| "#{t.name}:#{t.point}" if t }.join('<br>')
+      td rowspan='2'
+        - best_item_skills.each_slice(2) do |item1, item2|
+          - caption = item1.item
+          b= "#{caption.type}(#{caption.rare}): #{caption.name}"
+          br
+          = sanitize [item1&.rich_skill_text, item2&.rich_skill_text].join('<br>')
+          br
     tr
       td.center colspan='2' = unit.profession
       td.center= unit.specialty
