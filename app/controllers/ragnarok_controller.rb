@@ -31,10 +31,13 @@ class RagnarokController < ApplicationController
       skills += title_skills if title_skills.present?
       skills += item_skills if item_skills.present?
 
-      sum_skills = []
+      sum_skills = {}
       skills.pluck(:skill_id, :point).each do |skill_id, point|
-        sum_skills[skill_id] = point unless sum_skills[skill_id]
-        sum_skills[skill_id] += point
+        if sum_skills[skill_id]
+          sum_skills[skill_id] += point
+        else
+          sum_skills[skill_id] = point
+        end
       end
 
       [

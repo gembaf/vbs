@@ -46,10 +46,11 @@ table.table.table-bordered.middle
     th.center rowspan='2' リーダースキル
     th.center rowspan='2' 称号
     th.center rowspan='2' 装備
+    th.center rowspan='2' 合計
   tr
     th.center colspan='2' 職業
     th.center 特攻
-  - @result.each do |unit, title_skills, item_skills, _|
+  - @result.each do |unit, title_skills, item_skills, sum_skills|
     tr
       td rowspan='2' = unit.name
       td.center= unit.rank
@@ -67,6 +68,10 @@ table.table.table-bordered.middle
           br
           = strong_sanitize [item1&.rich_skill_text, item2&.rich_skill_text].join('<br>'), @skill&.name
           br
+      td rowspan='2'
+        - skill_hash = Ragnarok::Skill.pluck(:id, :name).to_h
+        - skills = sum_skills.map { |key, value| [skill_hash[key], value] }
+        = strong_sanitize_with_names display_skills(skills), @skill&.name, @names
     tr
       td.center colspan='2' = unit.profession
       td.center= unit.specialty
