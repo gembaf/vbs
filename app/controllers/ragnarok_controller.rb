@@ -15,13 +15,14 @@ class RagnarokController < ApplicationController
     )
 
     @skill = Ragnarok::Skill.find_by(name: params[:additional_skill_name])
-    @result = sort_by_skill(units, @skill, allow_leader).slice(0...30)
+    item_rank = params[:item_rank].present? ? params[:item_rank].to_i : 14
+    @result = sort_by_skill(units, @skill, allow_leader, item_rank).slice(0...30)
   end
 
-  def sort_by_skill(units, skill, allow_leader)
+  def sort_by_skill(units, skill, allow_leader, item_rank)
     units.map do |unit|
       title_skills = unit.best_title_skills(skill_name: skill&.name)
-      item_skills = unit.best_item_skills(skill_name: skill&.name, limit_rank: 13)
+      item_skills = unit.best_item_skills(skill_name: skill&.name, limit_rank: item_rank)
 
       skills = unit.passive_skills
       skills += unit.leader_skills if allow_leader

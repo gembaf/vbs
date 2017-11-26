@@ -20,7 +20,7 @@ module Ragnarok
       @title_skills[rank] = Ragnarok::TitleSkill.includes({title: :medallion}, :skill).where(title_id: [id1, id2])
     end
 
-    def best_item_skills(skill_name:, limit_rank: 1)
+    def best_item_skills(skill_name:, limit_rank: 14)
       id1 = Ragnarok::Item.best_item_skill(item_type: item1, skill_name: skill_name, limit_rank: limit_rank)
       id2 = Ragnarok::Item.best_item_skill(item_type: item2, skill_name: skill_name, limit_rank: limit_rank)
 

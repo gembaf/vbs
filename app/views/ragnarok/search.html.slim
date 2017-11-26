@@ -7,12 +7,15 @@
       .col-md-3
         label 職業
         = text_field_tag :profession_name, params[:profession_name], class: 'form-control'
-      .col-md-3
+      .col-md-2
         label 種族
         = text_field_tag :tribe_name, params[:tribe_name], class: 'form-control'
-      .col-md-3
+      .col-md-2
         label 加護
         = text_field_tag :protection_name, params[:protection_name], class: 'form-control'
+      .col-md-2
+        label 許容装備レア度
+        = text_field_tag :item_rank, params[:item_rank], class: 'form-control'
     .row
       .col-md-9
         label スキル名
