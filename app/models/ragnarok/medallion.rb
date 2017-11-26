@@ -19,12 +19,7 @@ module Ragnarok
     scope :includes_all, -> { includes(titles: { title_skill: :skill }) }
 
     def self.reality_range(rank, through_limit)
-      limit_reality = 6 if rank == 'S'
-      limit_reality = 5 if rank == 'A'
-      limit_reality = 4 if rank == 'B'
-      limit_reality = 3 if rank == 'C'
-      limit_reality = 2 if rank == 'D'
-      limit_reality = 1 if rank == 'E'
+      limit_reality = Ragnarok::Unit::RANK[rank.to_sym]
 
       if through_limit
         limit_reality += 1 if rank == 'S'

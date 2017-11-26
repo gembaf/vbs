@@ -15,7 +15,7 @@ class RagnarokController < ApplicationController
       if params[:title_skill_name].present?
         title_skills = unit.best_title_skills(skill_name: params[:title_skill_name])
       end
-      item_skills = unit.best_item_skills(skill_name: params[:item_skill_name], limit_rank: 13)
+      item_skills = unit.best_item_skills(skill_name: params[:title_skill_name], limit_rank: 13)
 
       [
         unit,
