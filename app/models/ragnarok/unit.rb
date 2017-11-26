@@ -28,8 +28,8 @@ module Ragnarok
       id2 = Ragnarok::Item.best_item_skill(item_type: item2, skill_name: skill_name, limit_rank: limit_rank)
 
       [
-        Ragnarok::ItemSkill.includes(:skill).where(item_id: id1),
-        Ragnarok::ItemSkill.includes(:skill).where(item_id: id2),
+        Ragnarok::ItemSkill.includes(:item, :skill).where(item_id: id1),
+        Ragnarok::ItemSkill.includes(:item, :skill).where(item_id: id2),
       ].flatten.compact
     end
 
