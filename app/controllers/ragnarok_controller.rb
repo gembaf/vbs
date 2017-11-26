@@ -11,18 +11,33 @@ class RagnarokController < ApplicationController
       skill: params[:skill_name],
     )
 
-    @data = units.map do |unit|
-      if params[:title_skill_name].present?
-        title_skills = unit.best_title_skills(skill_name: params[:title_skill_name])
+    @skill = Ragnarok::Skill.find_by(name: params[:additional_skill_name])
+    @result = sort_by_skill(units, @skill).slice(0...30)
+  end
+
+  def sort_by_skill(units, skill)
+    units.map do |unit|
+      title_skills = unit.best_title_skills(skill_name: skill&.name)
+      item_skills = unit.best_item_skills(skill_name: skill&.name, limit_rank: 13)
+
+      skills = unit.passive_skills
+      skills += unit.leader_skills
+      skills += title_skills if title_skills.present?
+      skills += item_skills if item_skills.present?
+
+      sum_skills = []
+      skills.pluck(:skill_id, :point).each do |skill_id, point|
+        sum_skills[skill_id] = point unless sum_skills[skill_id]
+        sum_skills[skill_id] += point
       end
-      item_skills = unit.best_item_skills(skill_name: params[:title_skill_name], limit_rank: 13)
 
       [
         unit,
-        title_skills ? title_skills : [nil, nil],
-        item_skills ? item_skills : [nil, nil],
+        title_skills,
+        item_skills,
+        sum_skills,
       ]
-    end
+    end.sort { |a, b| b[3][skill.id] <=> a[3][skill.id] }
   end
 
   def medallions

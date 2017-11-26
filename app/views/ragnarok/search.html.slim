@@ -10,7 +10,7 @@
   label スキル名
   = text_field_tag :skill_name, params[:skill_name]
   label 追加スキル名
-  = text_field_tag :title_skill_name, params[:title_skill_name]
+  = text_field_tag :additional_skill_name, params[:additional_skill_name]
   = submit_tag '検索'
 
 table.table.table-bordered.middle
@@ -26,7 +26,7 @@ table.table.table-bordered.middle
   tr
     th.center colspan='2' 職業
     th.center 特攻
-  - @data.each do |unit, best_title_skills, best_item_skills|
+  - @result.each do |unit, best_title_skills, best_item_skills, _|
     tr
       td rowspan='2' = unit.name
       td.center= unit.rank

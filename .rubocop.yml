@@ -52,3 +52,6 @@ TrailingCommaInLiteral:
 TrailingCommaInArguments:
   Enabled: false
 
+MultilineBlockChain:
+  Enabled: false
+
