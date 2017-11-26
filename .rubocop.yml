@@ -20,7 +20,7 @@ Documentation:
   Enabled: false
 
 AbcSize:
-  Max: 25
+  Max: 30
   Exclude:
     - 'lib/ragnarok/parser/**/*'
 
@@ -54,4 +54,8 @@ TrailingCommaInArguments:
 
 MultilineBlockChain:
   Enabled: false
+
+ParameterLists:
+  Exclude:
+    - 'app/finders/**/*'
 

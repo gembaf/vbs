@@ -8,12 +8,12 @@ module Ragnarok
 
     def passive_skill_texts
       passive_skills.each_slice(2).map do |s1, s2|
-        <<-EOS.strip_heredoc
+        <<-TEXT.strip_heredoc
           <div class="row">
             <div class="col-md-6">#{skill_text(s1)}</div>
             <div class="col-md-6">#{skill_text(s2)}</div>
           </div>
-        EOS
+        TEXT
       end.join
     end
 

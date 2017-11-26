@@ -5,11 +5,11 @@ module Ragnarok
     def rich_skill_text(caption)
       medallion = title.medallion
 
-      <<-EOS.strip_heredoc
+      <<-TEXT.strip_heredoc
         <b>#{caption}: #{medallion.short_name_text}#{title.name}</b>
         <br />
         #{skill_text(self)}
-      EOS
+      TEXT
     end
   end
 end
