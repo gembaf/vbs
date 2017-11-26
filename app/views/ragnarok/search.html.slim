@@ -16,6 +16,9 @@
     .row
       .col-md-9
         label スキル名
+        div
+          = check_box_tag :allow_leader, params[:allow_leader], params[:allow_leader], class: 'form-check-input'
+          | リーダースキルも含める
         = text_field_tag :skill_name, params[:skill_name], class: 'form-control'
       .col-md-3
         label 追加スキル名
