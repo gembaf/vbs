@@ -4,16 +4,14 @@ module ApplicationHelper
 
     sanitize(
       original,
-      tags: %w(div font b br),
-      attributes: %w(class color)
+      tags: %w[div font b br],
+      attributes: %w[class color]
     )
   end
 
   def strong_sanitize_with_names(original, word, names)
-    if names
-      names.each do |name|
-        original.gsub!(name, "<font color=\"blue\">#{name}</font>")
-      end
+    names&.each do |name|
+      original.gsub!(name, "<font color=\"blue\">#{name}</font>")
     end
 
     strong_sanitize(original, word)

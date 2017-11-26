@@ -50,14 +50,15 @@ table.table.table-bordered.middle
   tr
     th.center colspan='2' 職業
     th.center 特攻
+  - names = params[:skill_name]&.split
   - @result.each do |unit, title_skills, item_skills, sum_skills|
     tr
       td rowspan='2' = unit.name
       td.center= unit.rank
       td.center= unit.protection
       td.center= unit.tribe
-      td rowspan='2' = strong_sanitize_with_names unit.passive_skill_texts, @skill&.name, @names
-      td rowspan='2' = strong_sanitize_with_names unit.leader_skill_texts, @skill&.name, @names
+      td rowspan='2' = strong_sanitize_with_names unit.passive_skill_texts, @skill&.name, names
+      td rowspan='2' = strong_sanitize_with_names unit.leader_skill_texts, @skill&.name, names
       td rowspan='2'
         - prefix, suffix = title_skills
         = strong_sanitize [prefix&.rich_skill_text_prefix, suffix&.rich_skill_text_suffix].join('<br>'), @skill&.name
@@ -71,7 +72,7 @@ table.table.table-bordered.middle
       td rowspan='2'
         - skill_hash = Ragnarok::Skill.pluck(:id, :name).to_h
         - skills = sum_skills.map { |key, value| [skill_hash[key], value] }
-        = strong_sanitize_with_names display_skills(skills), @skill&.name, @names
+        = strong_sanitize_with_names display_skills(skills), @skill&.name, names
     tr
       td.center colspan='2' = unit.profession
       td.center= unit.specialty

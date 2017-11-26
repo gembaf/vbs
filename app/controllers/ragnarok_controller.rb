@@ -15,7 +15,6 @@ class RagnarokController < ApplicationController
       allow_leader: allow_leader,
     )
 
-    @names = params[:skill_name]&.split
     @skill = Ragnarok::Skill.find_by(name: params[:additional_skill_name])
     item_rank = params[:item_rank].present? ? params[:item_rank].to_i : 14
     @result = sort_by_skill(units, @skill, item_rank, allow_leader, allow_limit).slice(0...30)
