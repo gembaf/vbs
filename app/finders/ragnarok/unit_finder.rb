@@ -12,11 +12,8 @@ module Ragnarok
       unit_ids = Ragnarok::Unit.pluck(:id)
       each_ids.each { |ids| unit_ids &= ids }
 
-      if unit_ids == Ragnarok::Unit.pluck(:id)
-        []
-      else
-        Ragnarok::Unit.includes_all.where(id: unit_ids)
-      end
+      unit_ids = [] if unit_ids == Ragnarok::Unit.pluck(:id)
+      Ragnarok::Unit.includes_all.where(id: unit_ids)
     end
 
     def self.by_tribe(name)
