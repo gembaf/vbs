@@ -4,6 +4,7 @@ class RagnarokController < ApplicationController
 
   def search
     allow_leader = params[:allow_leader] == 'on'
+    allow_limit = params[:allow_limit] == 'on'
 
     units = Ragnarok::UnitFinder.find_units(
       name: params[:unit_name],
@@ -16,12 +17,12 @@ class RagnarokController < ApplicationController
 
     @skill = Ragnarok::Skill.find_by(name: params[:additional_skill_name])
     item_rank = params[:item_rank].present? ? params[:item_rank].to_i : 14
-    @result = sort_by_skill(units, @skill, allow_leader, item_rank).slice(0...30)
+    @result = sort_by_skill(units, @skill, item_rank, allow_leader, allow_limit).slice(0...30)
   end
 
-  def sort_by_skill(units, skill, allow_leader, item_rank)
+  def sort_by_skill(units, skill, item_rank, allow_leader, allow_limit)
     units.map do |unit|
-      title_skills = unit.best_title_skills(skill_name: skill&.name)
+      title_skills = unit.best_title_skills(skill_name: skill&.name, through_limit: allow_limit)
       item_skills = unit.best_item_skills(skill_name: skill&.name, limit_rank: item_rank)
 
       skills = unit.passive_skills

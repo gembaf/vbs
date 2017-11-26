@@ -25,6 +25,9 @@
         = text_field_tag :skill_name, params[:skill_name], class: 'form-control'
       .col-md-3
         label 追加スキル名
+        div
+          = check_box_tag :allow_limit, params[:allow_limit], params[:allow_limit], class: 'form-check-input'
+          | 上限突破
         = text_field_tag :additional_skill_name, params[:additional_skill_name], class: 'form-control'
     br
     .row
