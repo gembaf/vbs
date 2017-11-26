@@ -3,7 +3,7 @@ module Ragnarok
     def self.find_units(name:, profession:, tribe:, protection:, skill:, allow_leader:)
       each_ids = []
 
-      each_ids << [Ragnarok::Unit.find_by(name: name).id] if name.present?
+      each_ids << [Ragnarok::Unit.find_by(name: name)&.id] if name.present?
       each_ids << Ragnarok::Unit.where(profession: profession).pluck(:id) if profession.present?
       each_ids << by_tribe(tribe) if tribe.present?
       each_ids << by_protection(protection) if protection.present?
@@ -11,7 +11,12 @@ module Ragnarok
 
       unit_ids = Ragnarok::Unit.pluck(:id)
       each_ids.each { |ids| unit_ids &= ids }
-      Ragnarok::Unit.includes_all.where(id: unit_ids)
+
+      if unit_ids == Ragnarok::Unit.pluck(:id)
+        []
+      else
+        Ragnarok::Unit.includes_all.where(id: unit_ids)
+      end
     end
 
     def self.by_tribe(name)
