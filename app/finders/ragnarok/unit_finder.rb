@@ -11,7 +11,7 @@ module Ragnarok
 
       unit_ids = Ragnarok::Unit.pluck(:id)
       each_ids.each { |ids| unit_ids &= ids }
-      Ragnarok::Unit.where(id: unit_ids)
+      Ragnarok::Unit.includes_all.where(id: unit_ids)
     end
 
     def self.by_tribe(name)

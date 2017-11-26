@@ -25,7 +25,7 @@ module Ragnarok
       skill = Ragnarok::Skill.find_by(name: skill_name)
       return nil if skill.nil?
 
-      item_skills = includes(item_skills: :skill)
+      item_skills = joins(item_skills: :skill)
                     .where(ragnarok_item_skills: { skill_id: skill.id })
                     .where(type: item_type, rare: 1..limit_rank)
       return nil if item_skills.blank?

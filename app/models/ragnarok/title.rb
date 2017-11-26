@@ -38,7 +38,7 @@ module Ragnarok
       skill = Ragnarok::Skill.find_by(name: skill_name)
       return nil if skill.nil?
 
-      title_skills = includes(:medallion, title_skill: :skill)
+      title_skills = joins(:medallion, title_skill: :skill)
                      .where(ragnarok_title_skills: { skill_id: skill.id })
                      .where(ragnarok_medallions: { reality: reality_range })
                      .where(suffix: suffix, prefix: prefix)
