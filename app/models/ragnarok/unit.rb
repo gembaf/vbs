@@ -9,6 +9,36 @@ module Ragnarok
 
     scope :includes_all, -> { includes(passive_skills: :skill, leader_skills: :skill) }
 
+    def best_title_skills(skill_name:, through_limit: false)
+      @title_skills ||= {}
+      return @title_skills[rank] if @title_skills[rank]
+
+      range = Ragnarok::Medallion.reality_range(rank, through_limit)
+      id1 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, prefix: true)
+      id2 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, suffix: true)
+
+      @title_skills[rank] = [
+        Ragnarok::TitleSkill.includes({ title: :medallion }, :skill).find_by(title_id: id1),
+        Ragnarok::TitleSkill.includes({ title: :medallion }, :skill).find_by(title_id: id2),
+      ].compact
+    end
+
+    def best_item_skills(skill_name:, limit_rank: 14)
+      id1 = Ragnarok::Item.best_item_skill(item_type: item1, skill_name: skill_name, limit_rank: limit_rank)
+      id2 = Ragnarok::Item.best_item_skill(item_type: item2, skill_name: skill_name, limit_rank: limit_rank)
+
+      [
+        Ragnarok::ItemSkill.includes(:item, :skill).where(item_id: id1),
+        Ragnarok::ItemSkill.includes(:item, :skill).where(item_id: id2),
+      ].flatten.compact
+    end
+
+    def self.where_like(column, name)
+      names = name.split('')
+      query = names.map { |n| "#{column} like '%#{n}%'" }.join(' AND ')
+      where(query)
+    end
+
     def self.create_with_skill(params)
       passive_skills = params.delete(:passive_skills)
       leader_skills = params.delete(:leader_skills)

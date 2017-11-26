@@ -17,6 +17,17 @@ module Ragnarok
     has_many :titles
 
     scope :includes_all, -> { includes(titles: { title_skill: :skill }) }
+
+    def self.reality_range(rank, through_limit)
+      limit_reality = Ragnarok::Unit::RANK[rank.to_sym]
+
+      if through_limit
+        limit_reality += 1 if rank == 'S'
+        limit_reality += 1
+      end
+
+      1..limit_reality
+    end
   end
 end
 

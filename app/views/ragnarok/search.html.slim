@@ -1,0 +1,79 @@
+= form_tag ragnarok_search_path, method: :get do
+  .form-group
+    .row
+      .col-md-3
+        label 名前
+        = text_field_tag :unit_name, params[:unit_name], class: 'form-control'
+      .col-md-3
+        label 職業
+        = text_field_tag :profession_name, params[:profession_name], class: 'form-control'
+      .col-md-2
+        label 種族
+        = text_field_tag :tribe_name, params[:tribe_name], class: 'form-control'
+      .col-md-2
+        label 加護
+        = text_field_tag :protection_name, params[:protection_name], class: 'form-control'
+      .col-md-2
+        label 許容装備レア度
+        = text_field_tag :item_rank, params[:item_rank], class: 'form-control'
+    .row
+      .col-md-9
+        label スキル名
+        br
+        label for='allow_leader'
+          = check_box_tag :allow_leader, params[:allow_leader], params[:allow_leader], class: 'form-check-input', id: 'allow_leader'
+          | リーダースキルも含める
+        = text_field_tag :skill_name, params[:skill_name], class: 'form-control'
+      .col-md-3
+        label 追加スキル名
+        br
+        label for='allow_limit'
+          = check_box_tag :allow_limit, params[:allow_limit], params[:allow_limit], class: 'form-check-input', id: 'allow_limit'
+          | 上限突破
+        = text_field_tag :additional_skill_name, params[:additional_skill_name], class: 'form-control'
+    br
+    .row
+      .col-md-12.center
+        = submit_tag '検索', class: 'btn btn-primary'
+
+table.table.table-bordered.middle
+  tr
+    th.center rowspan='2' 名称
+    th.center ランク
+    th.center 加護
+    th.center 種族
+    th.center rowspan='2' パッシブスキル
+    th.center rowspan='2' リーダースキル
+    th.center rowspan='2' 称号
+    th.center rowspan='2' 装備
+    th.center rowspan='2' 合計
+  tr
+    th.center colspan='2' 職業
+    th.center 特攻
+  - names = params[:skill_name]&.split
+  - @result.each do |unit, title_skills, item_skills, sum_skills|
+    tr
+      td rowspan='2' = unit.name
+      td.center= unit.rank
+      td.center= unit.protection
+      td.center= unit.tribe
+      td rowspan='2' = strong_sanitize_with_names unit.passive_skill_texts, @skill&.name, names
+      td rowspan='2' = strong_sanitize_with_names unit.leader_skill_texts, @skill&.name, names
+      td rowspan='2'
+        - prefix, suffix = title_skills
+        = strong_sanitize [prefix&.rich_skill_text_prefix, suffix&.rich_skill_text_suffix].join('<br>'), @skill&.name
+      td rowspan='2'
+        - item_skills.each_slice(2) do |item1, item2|
+          - caption = item1.item
+          b= "#{caption.type}(#{caption.rare}): #{caption.name}"
+          br
+          = strong_sanitize [item1&.rich_skill_text, item2&.rich_skill_text].join('<br>'), @skill&.name
+          br
+      td rowspan='2'
+        - skill_hash = Ragnarok::Skill.pluck(:id, :name).to_h
+        - skills = sum_skills.map { |key, value| [skill_hash[key], value] }
+        = strong_sanitize_with_names display_skills(skills), @skill&.name, names
+    tr
+      td.center colspan='2' = unit.profession
+      td.center= unit.specialty
+
