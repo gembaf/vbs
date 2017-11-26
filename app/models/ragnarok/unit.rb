@@ -17,14 +17,20 @@ module Ragnarok
       id1 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, prefix: true)
       id2 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, suffix: true)
 
-      @title_skills[rank] = Ragnarok::TitleSkill.includes({ title: :medallion }, :skill).where(title_id: [id1, id2])
+      @title_skills[rank] = [
+        Ragnarok::TitleSkill.includes({ title: :medallion }, :skill).find_by(title_id: id1),
+        Ragnarok::TitleSkill.includes({ title: :medallion }, :skill).find_by(title_id: id2),
+      ].compact
     end
 
     def best_item_skills(skill_name:, limit_rank: 14)
       id1 = Ragnarok::Item.best_item_skill(item_type: item1, skill_name: skill_name, limit_rank: limit_rank)
       id2 = Ragnarok::Item.best_item_skill(item_type: item2, skill_name: skill_name, limit_rank: limit_rank)
 
-      Ragnarok::ItemSkill.includes(:skill).where(item_id: [id1, id2])
+      [
+        Ragnarok::ItemSkill.includes(:skill).where(item_id: id1),
+        Ragnarok::ItemSkill.includes(:skill).where(item_id: id2),
+      ].flatten.compact
     end
 
     def self.where_like(column, name)

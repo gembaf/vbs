@@ -57,7 +57,7 @@ table.table.table-bordered.middle
       td rowspan='2' = sanitize unit.leader_skill_texts
       td rowspan='2'
         - prefix, suffix = best_title_skills
-        = sanitize [prefix&.rich_skill_text('接頭'), suffix&.rich_skill_text('接尾')].join('<br>')
+        = sanitize [prefix&.rich_skill_text_prefix, suffix&.rich_skill_text_suffix].join('<br>')
       td rowspan='2'
         - best_item_skills.each_slice(2) do |item1, item2|
           - caption = item1.item

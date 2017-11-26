@@ -41,7 +41,9 @@ module Ragnarok
       title_skills = joins(:medallion, title_skill: :skill)
                      .where(ragnarok_title_skills: { skill_id: skill.id })
                      .where(ragnarok_medallions: { reality: reality_range })
-                     .where(suffix: suffix, prefix: prefix)
+      title_skills = title_skills&.where(prefix: prefix) if prefix
+      title_skills = title_skills&.where(suffix: suffix) if suffix
+
       return nil if title_skills.blank?
 
       hash = title_skills.group(:id).maximum(:point)
