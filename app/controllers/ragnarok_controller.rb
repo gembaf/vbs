@@ -15,13 +15,14 @@ class RagnarokController < ApplicationController
       allow_leader: allow_leader,
     )
 
+    @names = params[:skill_name]&.split
     @skill = Ragnarok::Skill.find_by(name: params[:additional_skill_name])
     item_rank = params[:item_rank].present? ? params[:item_rank].to_i : 14
     @result = sort_by_skill(units, @skill, item_rank, allow_leader, allow_limit).slice(0...30)
   end
 
   def sort_by_skill(units, skill, item_rank, allow_leader, allow_limit)
-    units.map do |unit|
+    result = units.map do |unit|
       title_skills = unit.best_title_skills(skill_name: skill&.name, through_limit: allow_limit)
       item_skills = unit.best_item_skills(skill_name: skill&.name, limit_rank: item_rank)
 
@@ -42,7 +43,10 @@ class RagnarokController < ApplicationController
         item_skills,
         sum_skills,
       ]
-    end.sort { |a, b| b[3][skill.id] <=> a[3][skill.id] }
+    end
+
+    result.sort! { |a, b| b[3][skill.id] <=> a[3][skill.id] } if skill
+    result
   end
 
   def medallions

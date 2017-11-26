@@ -19,14 +19,16 @@
     .row
       .col-md-9
         label スキル名
-        div
-          = check_box_tag :allow_leader, params[:allow_leader], params[:allow_leader], class: 'form-check-input'
+        br
+        label for='allow_leader'
+          = check_box_tag :allow_leader, params[:allow_leader], params[:allow_leader], class: 'form-check-input', id: 'allow_leader'
           | リーダースキルも含める
         = text_field_tag :skill_name, params[:skill_name], class: 'form-control'
       .col-md-3
         label 追加スキル名
-        div
-          = check_box_tag :allow_limit, params[:allow_limit], params[:allow_limit], class: 'form-check-input'
+        br
+        label for='allow_limit'
+          = check_box_tag :allow_limit, params[:allow_limit], params[:allow_limit], class: 'form-check-input', id: 'allow_limit'
           | 上限突破
         = text_field_tag :additional_skill_name, params[:additional_skill_name], class: 'form-control'
     br
@@ -47,23 +49,23 @@ table.table.table-bordered.middle
   tr
     th.center colspan='2' 職業
     th.center 特攻
-  - @result.each do |unit, best_title_skills, best_item_skills, _|
+  - @result.each do |unit, title_skills, item_skills, _|
     tr
       td rowspan='2' = unit.name
       td.center= unit.rank
       td.center= unit.protection
       td.center= unit.tribe
-      td rowspan='2' = sanitize unit.passive_skill_texts
-      td rowspan='2' = sanitize unit.leader_skill_texts
+      td rowspan='2' = strong_sanitize_with_names unit.passive_skill_texts, @skill&.name, @names
+      td rowspan='2' = strong_sanitize_with_names unit.leader_skill_texts, @skill&.name, @names
       td rowspan='2'
-        - prefix, suffix = best_title_skills
-        = sanitize [prefix&.rich_skill_text_prefix, suffix&.rich_skill_text_suffix].join('<br>')
+        - prefix, suffix = title_skills
+        = strong_sanitize [prefix&.rich_skill_text_prefix, suffix&.rich_skill_text_suffix].join('<br>'), @skill&.name
       td rowspan='2'
-        - best_item_skills.each_slice(2) do |item1, item2|
+        - item_skills.each_slice(2) do |item1, item2|
           - caption = item1.item
           b= "#{caption.type}(#{caption.rare}): #{caption.name}"
           br
-          = sanitize [item1&.rich_skill_text, item2&.rich_skill_text].join('<br>')
+          = strong_sanitize [item1&.rich_skill_text, item2&.rich_skill_text].join('<br>'), @skill&.name
           br
     tr
       td.center colspan='2' = unit.profession
