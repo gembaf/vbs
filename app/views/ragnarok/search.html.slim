@@ -34,8 +34,10 @@ table.table.table-bordered.middle
       td.center= unit.tribe
       td rowspan='2' = sanitize unit.passive_skill_texts
       td rowspan='2' = sanitize unit.leader_skill_texts
-      td rowspan='2' = sanitize best_title_skills.map { |t| "#{t.name}:#{t.point}" if t }.join('<br>')
-      td.center rowspan='2' = sanitize best_item_skills.map { |t| "#{t.name}:#{t.point}" if t }.join('<br>')
+      td rowspan='2'
+        - prefix, suffix = best_title_skills
+        = sanitize [prefix&.rich_skill_text('接頭'), suffix&.rich_skill_text('接尾')].join('<br>')
+      td rowspan='2' = sanitize best_item_skills.map { |t| "#{t.name}:#{t.point}" if t }.join('<br>')
     tr
       td.center colspan='2' = unit.profession
       td.center= unit.specialty

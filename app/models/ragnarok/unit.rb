@@ -17,7 +17,7 @@ module Ragnarok
       id1 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, prefix: true)
       id2 = Ragnarok::Title.best_title_skill(skill_name: skill_name, reality_range: range, suffix: true)
 
-      @title_skills[rank] = Ragnarok::TitleSkill.includes(:skill).where(title_id: [id1, id2])
+      @title_skills[rank] = Ragnarok::TitleSkill.includes({title: :medallion}, :skill).where(title_id: [id1, id2])
     end
 
     def best_item_skills(skill_name:, limit_rank: 1)
