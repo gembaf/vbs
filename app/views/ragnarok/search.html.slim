@@ -1,17 +1,29 @@
 = form_tag ragnarok_search_path, method: :get do
-  label 名前
-  = text_field_tag :unit_name, params[:unit_name]
-  label 加護
-  = text_field_tag :protection_name, params[:protection_name]
-  label 職業
-  = text_field_tag :profession_name, params[:profession_name]
-  label 種族名
-  = text_field_tag :tribe_name, params[:tribe_name]
-  label スキル名
-  = text_field_tag :skill_name, params[:skill_name]
-  label 追加スキル名
-  = text_field_tag :additional_skill_name, params[:additional_skill_name]
-  = submit_tag '検索'
+  .form-group
+    .row
+      .col-md-3
+        label 名前
+        = text_field_tag :unit_name, params[:unit_name], class: 'form-control'
+      .col-md-3
+        label 職業
+        = text_field_tag :profession_name, params[:profession_name], class: 'form-control'
+      .col-md-3
+        label 種族
+        = text_field_tag :tribe_name, params[:tribe_name], class: 'form-control'
+      .col-md-3
+        label 加護
+        = text_field_tag :protection_name, params[:protection_name], class: 'form-control'
+    .row
+      .col-md-9
+        label スキル名
+        = text_field_tag :skill_name, params[:skill_name], class: 'form-control'
+      .col-md-3
+        label 追加スキル名
+        = text_field_tag :additional_skill_name, params[:additional_skill_name], class: 'form-control'
+    br
+    .row
+      .col-md-12.center
+        = submit_tag '検索', class: 'btn btn-primary'
 
 table.table.table-bordered.middle
   tr
